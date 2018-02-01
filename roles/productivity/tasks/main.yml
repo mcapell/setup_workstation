@@ -1,0 +1,8 @@
+---
+- name: Install productivity packages
+  apt: name={{ item }} state=present
+  with_items:
+    - pass
+    - firefox
+#     - thunderbird
+#     - protonmail-bridge

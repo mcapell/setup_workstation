@@ -1,0 +1,24 @@
+---
+
+- name: Install development packages
+  apt: name={{ item }} state=present
+  with_items:
+    - vim
+    - git
+    - htop
+    - tmux
+    - ctags
+    - figlet
+    - fd  # ls fast alternative
+    - tree
+    - ag
+    - youtube-dl
+    - wget
+    - plantuml
+    - grep
+    - keybase
+
+
+# Install vimrc
+
+# Install dev dotfiles

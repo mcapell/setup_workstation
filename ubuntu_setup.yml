@@ -1,0 +1,6 @@
+- hosts: all
+
+  roles:
+    - { role: development }
+    - { role: security }
+    - { role: productivity }

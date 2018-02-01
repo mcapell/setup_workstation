@@ -1,0 +1,6 @@
+---
+- name: Install security packages
+  apt: name={{ item }} state=present
+  with_items:
+    - clamav
+    - rkhunter
