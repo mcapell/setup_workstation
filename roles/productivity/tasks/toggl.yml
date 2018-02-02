@@ -1,0 +1,22 @@
+---
+- name: Install Toggl dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libgstreamer-plugins-base0.10-0
+    - libgstreamer0.10-0
+
+- name: Check toggl is installed
+  command: dpkg-query -W toggldesktop
+  register: toggl_check
+  failed_when: toggl_check.rc > 1
+  changed_when: toggl_check.rc == 1
+
+- name: Download toggl deb
+  get_url:
+     url="https://toggl.com/api/v8/installer?app=td&platform=deb64&channel=stable"
+     dest="/home/{{ local_user }}/Downloads/toggldesktop_amd64.deb"
+  when: toggl_check.rc == 1
+
+- name: Install Toggle
+  apt: deb="/home/{{ local_user }}/Downloads/toggldesktop_amd64.deb"
+  when: toggl_check.rc == 1
