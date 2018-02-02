@@ -1,3 +1,11 @@
 ---
+- name: Check slack is installed
+  command: snap list slack
+  register: slack_check
+
+- debug: msg="slack exists"
+  when: slack_check.rc == 1
+
 - name: Install slack
   command: snap install slack --classic
+  when: slack_check.rc == 1

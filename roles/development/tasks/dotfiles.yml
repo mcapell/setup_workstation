@@ -1,4 +1,9 @@
 ---
+- name: Check dotfiles is configured
+  stat:
+    path: "/home/{{ local_user }}/.dotfiles/"
+  register: dotfiles_check
+
 - name: Configure vim using git repo
   git:
     repo: "{{ repo_dotfiles }}"
@@ -6,6 +11,10 @@
     version: master
   become: yes
   become_user: "{{ local_user }}"
+  when: dotfiles_check.stat.exists == false
 
-
-- name: Create dotfiles symlinks
+- name: Run setup
+  shell: "bash /home/{{ local_user }}/.dotfiles/setup.sh"
+  become: yes
+  become_user: "{{ local_user }}"
+  when: dotfiles_check.stat.exists == false

@@ -1,0 +1,4 @@
+---
+
+- name: Use pyls with vim
+  pip: name=pyls executable=pip2

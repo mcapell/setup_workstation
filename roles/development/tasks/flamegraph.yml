@@ -1,8 +1,22 @@
 ---
+- name: Check flamegraph is installed
+  stat:
+    path: "/usr/local/lib/FlameGraph/"
+  register: flamegraph_check
+
 - name: Download flamegraph repo
   git:
     repo: "https://github.com/brendangregg/FlameGraph.git"
-    dest: "/home/{{ local_user }}/.vim/"
+    dest: "/usr/local/lib/FlameGraph/"
     version: master
-  become: yes
-  become_user: "{{ local_user }}"
+  when: flamegraph_check.stat.exists == false
+
+- name: Symlink flamegraph binaries
+  file:
+    src: "/usr/local/lib/FlameGraph/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items:
+    - "flamegraph.pl"
+    - "stackcollapse-perf.pl"
+  when: flamegraph_check.stat.exists == false

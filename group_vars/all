@@ -3,3 +3,4 @@ local_user: marc
 
 # repositories
 repo_vimrc: https://github.com/mcapell/vimrc.git
+repo_dotfiles: https://github.com/mcapell/dotfiles.git

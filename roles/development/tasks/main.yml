@@ -10,16 +10,20 @@
     - ctags
     - figlet
     - tree
-    # - ag
-    #- youtube-dl
-    #- wget
-    #- plantuml
+    - silversearcher-ag
+    - youtube-dl
+    - wget
+    - plantuml
     - grep
-    #- keybase
-    # - fd  # ls fast alternative
+
+
+#- keybase
 
 
 # Import other tasks
 
 - import_tasks: vim.yml
+- import_tasks: fd.yml
 - import_tasks: flamegraph.yml
+- import_tasks: dotfiles.yml
+#- import_tasks: python.yml

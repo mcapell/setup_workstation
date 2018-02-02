@@ -2,12 +2,17 @@
 - name: Install vim
   apt: pkg=vim state=present
 
+- name: Check vimrc is configured
+  stat:
+    path: "/home/{{ local_user }}/.vim"
+  register: vimrc_check
 
 - name: Configure vim using git repo
   git:
     repo: "{{ repo_vimrc }}"
     dest: "/home/{{ local_user }}/.vim/"
     version: master
+  when: vimrc_check.stat.exists == false
   become: yes
   become_user: "{{ local_user }}"
 
@@ -17,3 +22,4 @@
     src: "/home/{{ local_user }}/.vim/vimrc"
     dest: "/home/{{ local_user }}/.vimrc"
     state: link
+  when: vimrc_check.stat.exists == false
