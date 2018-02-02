@@ -1,0 +1,8 @@
+---
+- name: Download flamegraph repo
+  git:
+    repo: "https://github.com/brendangregg/FlameGraph.git"
+    dest: "/home/{{ local_user }}/.vim/"
+    version: master
+  become: yes
+  become_user: "{{ local_user }}"

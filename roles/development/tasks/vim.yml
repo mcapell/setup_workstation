@@ -1,0 +1,19 @@
+---
+- name: Install vim
+  apt: pkg=vim state=present
+
+
+- name: Configure vim using git repo
+  git:
+    repo: "{{ repo_vimrc }}"
+    dest: "/home/{{ local_user }}/.vim/"
+    version: master
+  become: yes
+  become_user: "{{ local_user }}"
+
+
+- name: Create symlink to use the configuration
+  file:
+    src: "/home/{{ local_user }}/.vim/vimrc"
+    dest: "/home/{{ local_user }}/.vimrc"
+    state: link

@@ -1,7 +1,7 @@
 ---
 
 - name: Install development packages
-  apt: name={{ item }} state=present
+  apt: pkg={{ item }} state=present
   with_items:
     - vim
     - git
@@ -9,16 +9,17 @@
     - tmux
     - ctags
     - figlet
-    - fd  # ls fast alternative
     - tree
-    - ag
-    - youtube-dl
-    - wget
-    - plantuml
+    # - ag
+    #- youtube-dl
+    #- wget
+    #- plantuml
     - grep
-    - keybase
+    #- keybase
+    # - fd  # ls fast alternative
 
 
-# Install vimrc
+# Import other tasks
 
-# Install dev dotfiles
+- import_tasks: vim.yml
+- import_tasks: flamegraph.yml

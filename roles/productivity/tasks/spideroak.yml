@@ -1,0 +1,7 @@
+---
+- name: Add Spideroak repository
+
+- name: Import Spideroak's public key
+
+- name: Install spideroak
+  apt: pkg=spideroakone state=present

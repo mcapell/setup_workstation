@@ -1,8 +1,12 @@
 ---
 - name: Install productivity packages
-  apt: name={{ item }} state=present
+  apt: pkg={{ item }} state=present
   with_items:
     - pass
     - firefox
-#     - thunderbird
+    - filezilla
+    - thunderbird
 #     - protonmail-bridge
+
+- import_tasks: spotify.yml
+- import_tasks: slack.yml

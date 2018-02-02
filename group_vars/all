@@ -1,0 +1,5 @@
+# Localhost variables
+local_user: marc
+
+# repositories
+repo_vimrc: https://github.com/mcapell/vimrc.git
