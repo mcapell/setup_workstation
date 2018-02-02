@@ -10,3 +10,4 @@
 
 - import_tasks: spotify.yml
 - import_tasks: slack.yml
+- import_tasks: spideroak.yml

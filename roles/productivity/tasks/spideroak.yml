@@ -1,7 +1,12 @@
 ---
 - name: Add Spideroak repository
+  apt_repository: repo='deb http://APT.spideroak.com/ubuntu-spideroak-hardy/ release restricted'
 
 - name: Import Spideroak's public key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 573E3D1C51AE1B3D
+    state: present
 
 - name: Install spideroak
   apt: pkg=spideroakone state=present
