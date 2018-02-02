@@ -1,6 +1,9 @@
 ---
+- name: Add vim repository
+  apt_repository: repo="ppa:jonathonf/vim"
+
 - name: Install vim
-  apt: pkg=vim state=present
+  apt: pkg=vim update_cache=yes state=present
 
 - name: Check vimrc is configured
   stat:

@@ -22,9 +22,10 @@
 
 # Import other tasks
 
+- import_tasks: fzf.yml
 - import_tasks: vim.yml
 - import_tasks: fd.yml
 - import_tasks: flamegraph.yml
 - import_tasks: dotfiles.yml
 - import_tasks: gnome_terminal.yml
-#- import_tasks: python.yml
+- import_tasks: python.yml

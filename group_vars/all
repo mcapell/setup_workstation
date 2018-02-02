@@ -6,3 +6,4 @@ local_terminal_profile: marc
 repo_vimrc: https://github.com/mcapell/vimrc.git
 repo_dotfiles: https://github.com/mcapell/dotfiles.git
 repo_gnome_terminal_solarized: https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+repo_fzf: https://github.com/junegunn/fzf.git
