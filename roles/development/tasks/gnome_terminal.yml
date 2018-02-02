@@ -1,0 +1,26 @@
+---
+- name: Install requirements
+  apt: pkg={{ item }} state=present
+  with_items:
+    - dconf-cli
+
+- name: Check solarized is already configured
+  stat:
+    path: "/home/{{ local_user }}/.gnome-terminal-colors-solarized"
+  register: shell_solarized_check
+
+- name: Download the gnome-terminal-colors-solarized repo
+  git:
+    repo: "{{ repo_gnome_terminal_solarized }}"
+    dest: "/home/{{ local_user }}/.gnome-terminal-colors-solarized/"
+    version: master
+  when: shell_solarized_check.stat.exists == false
+  become: yes
+  become_user: "{{ local_user }}"
+
+
+- name: Configure the gnome-terminal
+  shell: "dbus-launch /home/{{ local_user }}/.gnome-terminal-colors-solarized/install.sh -s dark -p {{ local_terminal_profile }}"
+  become: yes
+  become_user: "{{ local_user }}"
+  when: shell_solarized_check.stat.exists == false

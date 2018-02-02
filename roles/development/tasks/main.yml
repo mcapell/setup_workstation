@@ -3,7 +3,6 @@
 - name: Install development packages
   apt: pkg={{ item }} state=present
   with_items:
-    - vim
     - git
     - htop
     - tmux
@@ -15,6 +14,7 @@
     - wget
     - plantuml
     - grep
+    - fonts-powerline
 
 
 #- keybase
@@ -26,4 +26,5 @@
 - import_tasks: fd.yml
 - import_tasks: flamegraph.yml
 - import_tasks: dotfiles.yml
+- import_tasks: gnome_terminal.yml
 #- import_tasks: python.yml
