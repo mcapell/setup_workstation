@@ -13,3 +13,4 @@
 - import_tasks: slack.yml
 - import_tasks: spideroak.yml
 - import_tasks: toggl.yml
+- import_tasks: skype.yml
