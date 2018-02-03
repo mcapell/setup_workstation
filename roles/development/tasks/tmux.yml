@@ -1,0 +1,8 @@
+---
+
+- name: Install tmux
+  apt: pkg=tmux state=present
+
+
+- name: Install tmuxinator
+  apt: pkg=tmuxinator state=present

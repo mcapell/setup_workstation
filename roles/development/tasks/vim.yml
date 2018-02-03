@@ -2,13 +2,23 @@
 - name: Add vim repository
   apt_repository: repo="ppa:jonathonf/vim"
 
+
 - name: Install vim
   apt: pkg=vim update_cache=yes state=present
+
+
+- name: Install plugin dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - silversearcher-ag
+    - fonts-powerline
+
 
 - name: Check vimrc is configured
   stat:
     path: "/home/{{ local_user }}/.vim"
   register: vimrc_check
+
 
 - name: Configure vim using git repo
   git:
