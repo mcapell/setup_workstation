@@ -27,3 +27,4 @@
 - import_tasks: gnome_terminal.yml
 - import_tasks: python.yml
 - import_tasks: tmux.yml
+- import_tasks: nodejs.yml
