@@ -2,3 +2,6 @@
 
 - name: Use pyls with vim
   pip: name=python-language-server executable=pip3
+
+- name: Instal virtualenv
+  pip: name=virtualenv executable=pip3
