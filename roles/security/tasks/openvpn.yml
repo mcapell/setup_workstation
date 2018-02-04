@@ -1,0 +1,11 @@
+---
+
+- name: Install OpenVPN
+  apt: pkg=openvpn state=present
+
+- name: Install OpenVPN binding for network manager
+  apt: pkg={{ item }} state=present
+  with_items:
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+
