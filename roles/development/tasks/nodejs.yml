@@ -7,19 +7,18 @@
     - libssl-dev
 
 - name: Check if nvm is already installed
-  command: command -v nvm
+  stat:
+    path: "/home/{{ local_user }}/.nvm/"
   register: nvm_check
-  failed_when: nvm_check.rc > 2
-  changed_when: nvm_check.rc == 2
 
 - name: Download nvm installation script
   get_url:
      url="https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh"
      dest="/home/{{ local_user }}/Downloads/nvm_install.sh"
-  when: nvm_check.rc == 2
+  when: nvm_check.stat.exists == false
 
 - name: Install nvm
   command: "bash /home/{{ local_user }}/Downloads/nvm_install.sh"
   become: yes
   become_user: "{{ local_user }}"
-  when: nvm_check.rc == 2
+  when: nvm_check.stat.exists == false

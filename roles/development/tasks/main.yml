@@ -12,6 +12,12 @@
     - wget
     - plantuml
     - grep
+    # curl tools
+    - curl
+    - libcurl4-openssl-dev
+    # xml tools
+    - libxml2-dev
+    - libxslt1-dev
 
 
 #- keybase

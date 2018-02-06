@@ -1,4 +1,9 @@
 ---
+- name: Check if spotify is already installed
+  command: dpkg-query -W spotify-client
+  register: spotify_check
+  failed_when: spotify_check.rc > 1
+  changed_when: spotify_check.rc == 1
 #- name: Add Apt Keys
 #  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id={{ item }} state=present
 #  with_items:
@@ -7,6 +12,8 @@
 
 - name: Add repository
   apt_repository: repo='deb http://repository.spotify.com stable non-free'
+  when: spotify_check.rc == 1
 
 - name: Install spotify
   apt: name=spotify-client update_cache=yes state=present
+  when: spotify_check.rc == 1

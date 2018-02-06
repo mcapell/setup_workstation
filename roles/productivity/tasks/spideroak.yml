@@ -1,12 +1,21 @@
 ---
+- name: Check Spideroak is already installed
+  command: dpkg-query -W spideroakone
+  register: spideroak_check
+  failed_when: spideroak_check.rc > 1
+  changed_when: spideroak_check.rc == 1
+
 - name: Add Spideroak repository
   apt_repository: repo='deb http://APT.spideroak.com/ubuntu-spideroak-hardy/ release restricted'
+  when: spideroak_check.rc == 1
 
 - name: Import Spideroak's public key
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: 573E3D1C51AE1B3D
     state: present
+  when: spideroak_check.rc == 1
 
 - name: Install spideroak
   apt: pkg=spideroakone state=present
+  when: spideroak_check.rc == 1

@@ -6,16 +6,40 @@
 - name: Instal virtualenv
   pip: name=virtualenv executable=pip3
 
+- name: Check Pyflame is installed
+  command: dpkg-query -W pyflame
+  register: pyflame_check
+  failed_when: pyflame_check.rc > 1
+  changed_when: pyflame_check.rc == 1
+
 - name: Add Pyflame repository
   apt_repository: repo="ppa:trevorjay/pyflame"
+  when: pyflame_check.rc == 1
 
 - name: Install Pyflame
   apt: pkg=pyflame update_cache=yes state=present
+  when: pyflame_check.rc == 1
+
+- name: Install Python2.x header file
+  apt: pkg=python-dev state=present
+
+- name: Install Python3.x header file
+  apt: pkg=python3-dev state=present
+
+- name: Check if Python3.6 is installed
+  command: dpkg-query -W python3.6
+  register: python36_check
+  failed_when: python36_check.rc > 1
+  changed_when: python36_check.rc == 1
 
 - name: Add Python3.6 repository on 16.04
   apt_repository: repo="ppa:deadsnakes/ppa"
-  when: ansible_distribution_version == "16.04"
+  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
 
 - name: Install Python3.6 on 16.04
   apt: pkg=python3.6 update_cache=yes state=present
-  when: ansible_distribution_version == "16.04"
+  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
+
+- name: Install Python3.6 header file on 16.04
+  apt: pkg=python3.6-dev update_cache=yes state=present
+  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
