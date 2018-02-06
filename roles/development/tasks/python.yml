@@ -11,3 +11,11 @@
 
 - name: Install Pyflame
   apt: pkg=pyflame update_cache=yes state=present
+
+- name: Add Python3.6 repository on 16.04
+  apt_repository: repo="ppa:deadsnakes/ppa"
+  when: ansible_distribution_version == "16.04"
+
+- name: Install Python3.6 on 16.04
+  apt: pkg=python3.6 update_cache=yes state=present
+  when: ansible_distribution_version == "16.04"
