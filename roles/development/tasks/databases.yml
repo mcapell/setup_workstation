@@ -1,0 +1,13 @@
+---
+
+- name: Install PostgreSQL client
+  apt: pkg=postgresql-client-common state=present
+
+- name: Install MySQL client
+  apt: pkg=mysql-client state=present
+
+- name: Install MongoDB client
+  apt: pkg=mongodb-clients state=present
+
+- name: Install Redis client
+  apt: pkg=redis-tools state=present
