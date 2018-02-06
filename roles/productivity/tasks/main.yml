@@ -14,3 +14,4 @@
 - import_tasks: spideroak.yml
 - import_tasks: toggl.yml
 - import_tasks: skype.yml
+- import_tasks: caffeine.yml
