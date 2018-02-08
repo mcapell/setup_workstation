@@ -9,8 +9,31 @@
     - mysql-client
     - libmysqlclient-dev
 
-- name: Install MongoDB client
-  apt: pkg=mongodb-clients state=present
-
 - name: Install Redis client
   apt: pkg=redis-tools state=present
+
+
+- name: Check MongoDB is installed
+  command: dpkg-query -W mongodb-org*
+  register: mongodb_check
+  failed_when: mongodb_check.rc > 1
+  changed_when: mongodb_check.rc == 1
+
+- name: Import MongoDB org repo key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+    state: present
+  when: mongodb_check.rc == 1
+
+- name: Add MongoDB ORG repo
+  apt_repository: repo='deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse'
+  when: mongodb_check.rc == 1
+
+- name: Install MongoDB client
+  apt: pkg=mongodb-org-shell update_cache=yes state=present
+  when: mongodb_check.rc == 1
+
+- name: Install MongoDB tools
+  apt: pkg=mongodb-org-tools
+  when: mongodb_check.rc == 1
