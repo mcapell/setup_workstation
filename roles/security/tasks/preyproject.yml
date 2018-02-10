@@ -1,0 +1,17 @@
+---
+
+- name: Check Prey is installed
+  command: dpkg-query -W prey
+  register: prey_check
+  failed_when: prey_check.rc > 1
+  changed_when: prey_check.rc == 1
+
+- name: Download Prey deb
+  get_url:
+    url="https://downloads.preyproject.com/prey-client-releases/node-client/1.7.3/prey_1.7.3_amd64.deb"
+    dest="/home/{{ local_user }}/Downloads/prey_1.7.3_amd64.deb"
+  when: prey_check.rc == 1
+
+- name: Install Prey
+  apt: deb="/home/{{ local_user }}/Downloads/prey_1.7.3_amd64.deb"
+  when: prey_check.rc == 1
