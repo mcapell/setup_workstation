@@ -1,8 +1,4 @@
 ---
-
-- name: Install PostgreSQL client
-  apt: pkg=postgresql-client-common state=present
-
 - name: Install MySQL client
   apt: pkg={{ item }} state=present
   with_items:
@@ -12,7 +8,7 @@
 - name: Install Redis client
   apt: pkg=redis-tools state=present
 
-
+# Install MongoDB latest version
 - name: Check MongoDB is installed
   command: dpkg-query -W mongodb-org*
   register: mongodb_check
@@ -37,3 +33,22 @@
 - name: Install MongoDB tools
   apt: pkg=mongodb-org-tools
   when: mongodb_check.rc == 1
+
+# Install PostgreSQL latest version
+- name: Check if PostgreSQL client is already installed
+  command: dpkg-query -W postgresql-client-9.6
+  register: psql_check
+  failed_when: psql_check.rc > 1
+  changed_when: psql_check.rc == 1
+
+- name: Add PostgreSQL repo key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+  when: psql_check.rc == 1
+
+- name: Add PostgreSQL repo
+  apt_repository: repo="deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+  when: psql_check.rc == 1
+
+- name: Install PostgreSQL client
+  apt: pkg=postgresql-client-9.6 update_cache=yes state=present
+  when: psql_check.rc == 1
