@@ -16,3 +16,4 @@
 - import_tasks: skype.yml
 - import_tasks: caffeine.yml
 - import_tasks: albert.yml
+- import_tasks: dragondisk.yml
