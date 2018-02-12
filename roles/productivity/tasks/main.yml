@@ -15,3 +15,4 @@
 - import_tasks: toggl.yml
 - import_tasks: skype.yml
 - import_tasks: caffeine.yml
+- import_tasks: albert.yml

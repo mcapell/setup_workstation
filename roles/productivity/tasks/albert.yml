@@ -1,0 +1,14 @@
+---
+- name: Check Albert is already installed
+  command: dpkg-query -W albert
+  register: albert_check
+  failed_when: albert_check.rc > 1
+  changed_when: albert_check.rc == 1
+
+- name: Add Albert repository
+  apt_repository: repo="ppa:nilarimogard/webupd8"
+  when: albert_check.rc == 1
+
+- name: Install Albert
+  apt: pkg=albert update_cache=yes state=present
+  when: albert_check.rc == 1
