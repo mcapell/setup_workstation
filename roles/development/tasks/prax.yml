@@ -1,0 +1,17 @@
+---
+
+- name: Check prax is installed
+  command: dpkg-query -W prax
+  register: prax_check
+  failed_when: prax_check.rc > 1
+  changed_when: prax_check.rc == 1
+
+- name: Download prax deb
+  get_url:
+     url="https://github.com/ysbaddaden/prax.cr/releases/download/v0.7.0/prax_0.7.0-1_amd64.deb"
+     dest="/home/{{ local_user }}/Downloads/prax_0.7.0-1_amd64.deb"
+  when: prax_check.rc == 1
+
+- name: Install prax
+  apt: deb="/home/{{ local_user }}/Downloads/prax_0.7.0-1_amd64.deb"
+  when: prax_check.rc == 1
