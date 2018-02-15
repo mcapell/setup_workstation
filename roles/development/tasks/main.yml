@@ -4,7 +4,7 @@
   apt: pkg={{ item }} state=present
   with_items:
     - git
-    - ctags
+    - exuberant-ctags
     - figlet
     - tree
     - youtube-dl
