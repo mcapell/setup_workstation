@@ -1,0 +1,8 @@
+---
+
+- name: Install monitoring tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - htop
+    - bmon
+    - iotop

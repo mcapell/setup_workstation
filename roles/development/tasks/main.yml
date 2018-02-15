@@ -4,7 +4,6 @@
   apt: pkg={{ item }} state=present
   with_items:
     - git
-    - htop
     - ctags
     - figlet
     - tree
@@ -35,3 +34,4 @@
 - import_tasks: tmux.yml
 - import_tasks: nodejs.yml
 - import_tasks: databases.yml
+- import_tasks: monitor.yml
