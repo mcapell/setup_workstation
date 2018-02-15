@@ -11,6 +11,7 @@
     - wget
     - plantuml
     - grep
+    - jq
     # curl tools
     - curl
     - libcurl4-openssl-dev
