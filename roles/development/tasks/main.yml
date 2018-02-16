@@ -12,6 +12,7 @@
     - plantuml
     - grep
     - jq
+    - unrar
     # curl tools
     - curl
     - libcurl4-openssl-dev
