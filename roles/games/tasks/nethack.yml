@@ -1,0 +1,4 @@
+---
+
+- name: Install nethack
+  apt: pkg=nethack-console state=present
