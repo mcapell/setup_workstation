@@ -1,4 +1,3 @@
-- hosts: all
 - hosts: localhost
 
   roles:
@@ -6,3 +5,4 @@
     - { role: security }
     - { role: productivity }
     - { role: games }
+    - { role: hardware }
