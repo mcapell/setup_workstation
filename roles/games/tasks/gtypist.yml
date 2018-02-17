@@ -1,0 +1,4 @@
+---
+
+- name: Install gtypist
+  apt: pkg=gtypist state=present
