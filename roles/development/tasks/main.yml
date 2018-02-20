@@ -13,6 +13,7 @@
     - grep
     - jq
     - unrar
+    - python3-csvkit
     # curl tools
     - curl
     - libcurl4-openssl-dev
