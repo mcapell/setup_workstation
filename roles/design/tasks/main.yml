@@ -1,0 +1,5 @@
+---
+- name: Install design packages
+  apt: pkg=imagemagick state=present
+
+- import_tasks: gimp.yml

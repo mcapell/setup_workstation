@@ -1,0 +1,13 @@
+- name: Check if gimp is installed
+  command: dpkg-query -W gimp
+  register: gimp_check
+  failed_when: gimp_check.rc > 1
+  changed_when: gimp_check.rc == 1
+
+- name: Add gimp repository
+  apt_repository: repo="ppa:otto-kesselgulasch/gimp"
+  when: gimp_check.rc == 1
+
+- name: Install gimp
+  apt: pkg=gimp update_cache=yes state=present
+  when: gimp_check.rc == 1
