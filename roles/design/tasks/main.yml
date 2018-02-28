@@ -1,5 +1,7 @@
 ---
 - name: Install design packages
-  apt: pkg=imagemagick state=present
+  apt: pkg={{ item }} state=present
+  with_items:
+    - imagemagick
 
 - import_tasks: gimp.yml
