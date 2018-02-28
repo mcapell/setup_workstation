@@ -5,3 +5,4 @@
     - imagemagick
 
 - import_tasks: gimp.yml
+- import_tasks: blender.yml
