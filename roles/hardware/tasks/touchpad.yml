@@ -1,0 +1,4 @@
+---
+
+- name: Install touchegg
+  apt: pkg=touchegg state=present
