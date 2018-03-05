@@ -8,6 +8,7 @@
     - thunderbird
     - mdp
     - ledger
+    - texlive-latex-base
 #     - protonmail-bridge
 
 - import_tasks: spotify.yml
