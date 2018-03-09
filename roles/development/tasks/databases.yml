@@ -8,6 +8,9 @@
 - name: Install Redis client
   apt: pkg=redis-tools state=present
 
+- name: Install SQLite3
+  apt: pkg=sqlite3 state=present
+
 # Install MongoDB latest version
 - name: Check MongoDB is installed
   command: dpkg-query -W mongodb-org*
