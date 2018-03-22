@@ -40,3 +40,4 @@
 - import_tasks: databases.yml
 - import_tasks: monitor.yml
 - import_tasks: ruby.yml
+- import_tasks: web.yml

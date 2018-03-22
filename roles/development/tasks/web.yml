@@ -1,0 +1,4 @@
+---
+
+- name: Install compass
+  gem: name=compass state=present
