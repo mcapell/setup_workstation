@@ -1,0 +1,15 @@
+---
+
+- name: Check Tor Launcher is already installer
+  command: dpkg-query -W torbrowser-launchers
+  register: tor_check
+  failed_when: tor_check.rc > 1
+  changed_when: tor_check.rc == 1
+
+- name: Add Tor launcher repository
+  apt_repository: repo="ppa:micahflee/ppa"
+  when: tor_check.rc == 1
+
+- name: Install Tor Browser Launcher
+  apt: pkg=torbrowser-launcher update_cache=yes state=latest
+  when: tor_check.rc == 1

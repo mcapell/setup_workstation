@@ -7,3 +7,4 @@
 
 - import_tasks: openvpn.yml
 - import_tasks: preyproject.yml
+- import_tasks: privacy.yml
