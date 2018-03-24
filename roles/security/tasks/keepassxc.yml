@@ -1,0 +1,15 @@
+---
+
+- name: Check KeepassXC is already installed
+  command: dpkg-query -W keepassxc
+  register: keepass_check
+  failed_when: keepass_check.rc > 1
+  changed_when: keepass_check.rc == 1
+
+- name: Add KeePassXC repository
+  apt_repository: repo="ppa:phoerious/keepassxc"
+  when: keepass_check.rc == 1
+
+- name: Install KeepassXC
+  apt: pkg=keepassxc update_cache=yes state=present
+  when: keepass_check.rc == 1
