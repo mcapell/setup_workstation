@@ -1,0 +1,12 @@
+---
+
+- name: Check if rust is already installed
+  stat:
+    path: "/home/{{ local_user }}/.cargo"
+  register: rust_check
+
+- name: Install rust using rustup
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  become: yes
+  become_user: "{{ local_user }}"
+  when: rust_check.stat.exists == false

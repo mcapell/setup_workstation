@@ -41,3 +41,4 @@
 - import_tasks: monitor.yml
 - import_tasks: ruby.yml
 - import_tasks: web.yml
+- import_tasks: rust.yml
