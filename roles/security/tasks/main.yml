@@ -9,3 +9,4 @@
 - import_tasks: preyproject.yml
 - import_tasks: privacy.yml
 - import_tasks: keepassxc.yml
+- import_tasks: backup.yml
