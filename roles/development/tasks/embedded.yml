@@ -1,0 +1,6 @@
+---
+
+- name: Install Arduino utilities
+  apt: pkg={{ item }} state=present
+  with_items:
+    - minicom

@@ -42,3 +42,4 @@
 - import_tasks: ruby.yml
 - import_tasks: web.yml
 - import_tasks: rust.yml
+- import_tasks: embedded.yml
