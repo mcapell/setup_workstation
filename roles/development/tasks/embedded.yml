@@ -1,6 +1,9 @@
 ---
 
-- name: Install Arduino utilities
+- name: Install embedded utilities
   apt: pkg={{ item }} state=present
   with_items:
     - minicom
+
+- name: Install arduino
+  apt: pkg=arduino-core state=present
