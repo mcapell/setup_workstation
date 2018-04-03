@@ -7,3 +7,17 @@
     - bmon
     - iotop
     - traceroute
+
+- name: Check if wireshark is installed
+  command: dpkg-query -W wireshark
+  register: wireshark_check
+  failed_when: wireshark_check.rc > 1
+  changed_when: wireshark_check.rc == 1
+
+- name: Add wireshark repo
+  apt_repository: repo="ppa:wireshark-dev/stable"
+  when: wireshark_check.rc == 1
+
+- name: Install Wireshark
+  apt: pkg=wireshark update_cache=yes state=present
+  when: wireshark_check.rc == 1
