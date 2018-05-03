@@ -27,3 +27,6 @@
 
 - name: Install Tails Installer
   apt: pkg=tails-installer update_cache=yes state=present
+
+- name: Install metadata editor
+  apt: pkg=exiv2 state=present
