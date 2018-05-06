@@ -9,6 +9,8 @@
     - mdp
     - ledger
     - texlive-latex-base
+    - pandoc
+    - texlive-fonts-recommended
 #     - protonmail-bridge
 
 - import_tasks: spotify.yml
