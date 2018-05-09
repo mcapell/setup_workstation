@@ -21,6 +21,7 @@
     # xml tools
     - libxml2-dev
     - libxslt1-dev
+    - libxml2-utils
 
 
 #- keybase
