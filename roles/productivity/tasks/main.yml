@@ -11,7 +11,8 @@
     - texlive-latex-base
     - pandoc
     - texlive-fonts-recommended
-#     - protonmail-bridge
+    # Scanner software
+    - xsane
 
 - import_tasks: spotify.yml
 - import_tasks: slack.yml
