@@ -22,6 +22,7 @@
     - libxml2-dev
     - libxslt1-dev
     - libxml2-utils
+    - google-cloud-sdk
 
 
 #- keybase
