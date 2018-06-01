@@ -12,3 +12,9 @@
 - name: Install Albert
   apt: pkg=albert update_cache=yes state=present
   when: albert_check.rc == 1
+
+- name: Start Albert on start up
+  file:
+    src: "/usr/share/applications/albert.desktop"
+    dest: "/home/{{ local_user }}/.config/autostart/albert.desktop"
+    state: link
