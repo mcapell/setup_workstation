@@ -9,8 +9,13 @@
     - mdp
     - ledger
     - texlive-latex-base
-    - pandoc
+    - texlive
     - texlive-fonts-recommended
+    - texlive-xetex
+    - texlive-fonts-extra
+    - texlive-latex-extra
+    - texlive-science
+    - pandoc
     # Scanner software
     - xsane
 
