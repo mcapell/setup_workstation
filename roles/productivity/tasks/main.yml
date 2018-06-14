@@ -18,6 +18,8 @@
     - pandoc
     # Scanner software
     - xsane
+    # flash
+    - flashplugin-installer
 
 - import_tasks: spotify.yml
 - import_tasks: slack.yml
