@@ -1,6 +1,6 @@
 # Localhost variables
 local_user: marc
-local_terminal_profile: marc
+local_terminal_profile: solarized
 
 # repositories
 repo_vimrc: https://github.com/mcapell/vimrc.git

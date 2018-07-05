@@ -24,3 +24,7 @@
   become: yes
   become_user: "{{ local_user }}"
   when: shell_solarized_check.stat.exists == false
+
+
+- name: Install inconsolata font
+  apt: pkg=fonts-inconsolata state=present
