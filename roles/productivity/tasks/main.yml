@@ -8,6 +8,8 @@
     - thunderbird
     - mdp
     - ledger
+    - lm-sensors
+    # LaTeX utils
     - texlive-latex-base
     - texlive
     - texlive-fonts-recommended
