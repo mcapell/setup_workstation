@@ -1,0 +1,15 @@
+---
+
+- name: Check emacs is already installed
+  command: dpkg-query -W emacs
+  register: emacs_check
+  failed_when: emacs_check.rc > 1
+  changed_when: emacs_check.rc == 1
+
+- name: Add emacs repository version >25.1
+  apt_repository: repo="ppa:kelleyk/emacs"
+  when: emacs_check.rc == 1
+
+- name: Install emacs
+  apt: pkg=emacs25 update_cache=yes state=present
+  when: emacs_check.rc == 1

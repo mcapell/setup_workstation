@@ -45,3 +45,4 @@
 - import_tasks: web.yml
 - import_tasks: rust.yml
 - import_tasks: embedded.yml
+- import_tasks: emacs.yml
