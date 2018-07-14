@@ -1,0 +1,20 @@
+---
+
+- name: Install requirements for VLC and UPnP client
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libupnp6  # needed for VLC to play UPnP
+
+- name: Check if vlc is already installed
+  command: dpkg-query -W vlc
+  register: vlc_check
+  failed_when: vlc_check.rc > 1
+  changed_when: vlc_check.rc == 1
+
+- name: Install VLC daily repository
+  apt_repository: repo="ppa:videolan/master-daily"
+  when: vlc_check.rc == 1
+
+- name: Install VLC
+  apt: pkg=vlc update_cache=yes state=present
+  when: vlc_check.rc == 1

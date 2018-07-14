@@ -6,7 +6,6 @@
     - firefox
     - filezilla
     - thunderbird
-    - vlc
     - mdp
     - ledger
     - lm-sensors
@@ -32,3 +31,4 @@
 - import_tasks: caffeine.yml
 - import_tasks: albert.yml
 - import_tasks: dragondisk.yml
+- import_tasks: vlc_player.yml

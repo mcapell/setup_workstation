@@ -1,7 +1,7 @@
 ---
 
 - name: Check emacs is already installed
-  command: dpkg-query -W emacs
+  command: dpkg-query -W emacs25
   register: emacs_check
   failed_when: emacs_check.rc > 1
   changed_when: emacs_check.rc == 1
