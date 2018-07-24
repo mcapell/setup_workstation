@@ -9,9 +9,6 @@
 - name: Instal pipenv
   pip: name=pipenv executable=pip3
 
-- name: Install Rope
-  pip: name=rope executable=pip3
-
 - name: Check Pyflame is installed
   command: dpkg-query -W pyflame
   register: pyflame_check
