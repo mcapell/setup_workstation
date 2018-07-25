@@ -7,3 +7,6 @@ repo_vimrc: https://github.com/mcapell/vimrc.git
 repo_dotfiles: https://github.com/mcapell/dotfiles.git
 repo_gnome_terminal_solarized: https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 repo_fzf: https://github.com/junegunn/fzf.git
+
+# Binary versions
+bin_docker_machine: v0.15.0

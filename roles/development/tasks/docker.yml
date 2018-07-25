@@ -1,0 +1,28 @@
+---
+
+- name: Check docker-machine is installed
+  command: which docker-machine
+  register: check_dm
+  failed_when: check_dm.rc > 1
+  changed_when: check_dm.rc == 1
+
+- name: Get uname -s
+  shell: uname -s
+  register: uname_s
+  when: check_dm is changed
+
+- name: Get uname -m
+  shell: uname -m
+  register: uname_m
+  when: check_dm is changed
+
+- name: Download docker-machine binary
+  get_url:
+    url="https://github.com/docker/machine/releases/download/{{ bin_docker_machine }}/docker-machine-{{ uname_s.stdout }}-{{ uname_m.stdout }}"
+    dest="/tmp/docker-machine"
+  when: check_dm is changed
+
+- name: Install docker-machine
+  command: install /tmp/docker-machine /usr/local/bin/docker-machine
+  become: yes
+  when: check_dm is changed

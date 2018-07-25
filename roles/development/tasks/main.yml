@@ -1,5 +1,4 @@
 ---
-
 - name: Install development packages
   apt: pkg={{ item }} state=present
   with_items:
@@ -46,3 +45,4 @@
 - import_tasks: rust.yml
 - import_tasks: embedded.yml
 - import_tasks: emacs.yml
+- import_tasks: docker.yml
