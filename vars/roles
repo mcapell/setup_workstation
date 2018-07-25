@@ -1,0 +1,7 @@
+# Roles configuration
+role_development: yes
+role_security: yes
+role_productivity: yes
+role_games: yes
+role_hardware: yes
+role_design: yes

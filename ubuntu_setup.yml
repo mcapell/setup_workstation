@@ -1,9 +1,10 @@
 - hosts: localhost
-
+  vars_files:
+      - vars/roles
   roles:
-    - { role: development }
-    - { role: security }
-    - { role: productivity }
-    - { role: games }
-    - { role: hardware }
-    - { role: design }
+      - { role: development, when: role_development == true }
+      - { role: security, when: role_security == true }
+      - { role: productivity, when: role_productivity == true }
+      - { role: games, when: role_games == true }
+      - { role: hardware, when: role_hardware == true }
+      - { role: design, when: role_design == true }
