@@ -1,0 +1,21 @@
+---
+
+- name: Check terraform is installed
+  command: which terraform
+  register: check_terraform
+  failed_when: check_terraform.rc > 1
+  changed_when: check_terraform.rc == 1
+
+- name: Download terraform binary
+  get_url:
+    url="https://releases.hashicorp.com/terraform/{{ bin_terraform }}/terraform_{{ bin_terraform }}_linux_amd64.zip"
+    dest="/tmp/terraform.zip"
+  when: check_terraform is changed
+
+- name: Install terraform
+  unarchive:
+    src="/tmp/terraform.zip"
+    dest=/usr/local/bin
+    copy=no
+  become: yes
+  when: check_terraform is changed
