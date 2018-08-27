@@ -8,3 +8,4 @@
       - { role: games, when: role_games == true }
       - { role: hardware, when: role_hardware == true }
       - { role: design, when: role_design == true }
+      - { role: ubuntu, when: role_ubuntu == true }

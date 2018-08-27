@@ -11,3 +11,4 @@ repo_fzf: https://github.com/junegunn/fzf.git
 # Binary versions
 bin_docker_machine: v0.15.0
 bin_terraform: 0.11.7
+bin_playerctl: 0.6.1

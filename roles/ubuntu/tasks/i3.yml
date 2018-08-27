@@ -1,0 +1,29 @@
+- name: Install i3 WM
+  apt: pkg=i3 state=present
+
+- name: Utilities for i3 WM
+  apt: pkg={{ item }} state=present
+  with_items:
+    - xbacklight  # adjust screen light
+    - feh  # change background image
+    - arandr  # graphical tool to edit monitors interface
+    - rofi  # alternative to dmenu
+    - i3blocks  # tool to generate the status bar
+    - blueman  # tool to manage bluetooth from the status bar
+    - pavucontrol  # tool to manage audio
+
+- name: Check playerctl is already installed
+  command: dpkg-query -W playerctl
+  register: check_playerctl
+  failed_when: check_playerctl.rc > 1
+  changed_when: check_playerctl.rc == 1
+
+- name: Download playerctl package
+  get_url:
+    url="https://github.com/acrisci/playerctl/releases/download/v{{ bin_playerctl }}/playerctl-{{ bin_playerctl }}_amd64.deb"
+    dest="/tmp/playerctl-{{ bin_playerctl }}_amd64.deb"
+  when: check_playerctl is changed
+
+- name: Install playerctl package
+  apt: deb="/tmp/playerctl-{{ bin_playerctl }}_amd64.deb"
+  when: check_playerctl is changed
