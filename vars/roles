@@ -5,4 +5,4 @@ role_productivity: yes
 role_games: yes
 role_hardware: yes
 role_design: yes
-role_ubuntu: no
+role_ubuntu: yes
