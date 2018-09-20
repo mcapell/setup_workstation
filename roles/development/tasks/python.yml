@@ -52,3 +52,13 @@
 - name: Install Python3.6 header file on 16.04
   apt: pkg=python3.6-dev update_cache=yes state=present
   when: ansible_distribution_version == "16.04" and python36_check.rc == 1
+
+- name: Check py-spy is installed
+  stat:
+    path: /home/{{ local_user }}/.cargo/bin/py-spy
+  register: check_pyspy
+  changed_when: check_pyspy.stat.exists == false
+
+- name: Install py-spy
+  command: /home/{{ local_user }}/.cargo/bin/cargo install py-spy
+  when: check_pyspy is changed
