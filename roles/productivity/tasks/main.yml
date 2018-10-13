@@ -2,14 +2,15 @@
 - name: Install productivity packages
   apt: pkg={{ item }} state=present
   with_items:
-    - pass
+    - pass  # password manager
     - firefox
     - filezilla
     - thunderbird
-    - mdp
-    - ledger
-    - lm-sensors
+    - mdp  # markdown presentations
+    - ledger  # accouting for hackers
+    - lm-sensors  # laptop sensor information (temp, fan rpm..)
     - beep
+    - quassel  # IRC client based on weechat
     # LaTeX utils
     - texlive-latex-base
     - texlive
