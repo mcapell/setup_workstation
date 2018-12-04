@@ -11,6 +11,7 @@
     - lm-sensors  # laptop sensor information (temp, fan rpm..)
     - beep
     - quassel  # IRC client based on weechat
+    - ttf-mscorefonts-installer  # for fonts such as times new roman
     # LaTeX utils
     - texlive-latex-base
     - texlive
