@@ -1,30 +1,31 @@
 ---
 - name: Install productivity packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - pass  # password manager
-    - firefox
-    - filezilla
-    - thunderbird
-    - mdp  # markdown presentations
-    - ledger  # accouting for hackers
-    - lm-sensors  # laptop sensor information (temp, fan rpm..)
-    - beep
-    - quassel  # IRC client based on weechat
-    - ttf-mscorefonts-installer  # for fonts such as times new roman
-    # LaTeX utils
-    - texlive-latex-base
-    - texlive
-    - texlive-fonts-recommended
-    - texlive-xetex
-    - texlive-fonts-extra
-    - texlive-latex-extra
-    - texlive-science
-    - pandoc
-    # Scanner software
-    - xsane
-    # flash
-    - flashplugin-installer
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - pass  # password manager
+      - firefox
+      - filezilla
+      - thunderbird
+      - mdp  # markdown presentations
+      - ledger  # accouting for hackers
+      - lm-sensors  # laptop sensor information (temp, fan rpm..)
+      - beep
+      - quassel  # IRC client based on weechat
+      - ttf-mscorefonts-installer  # for fonts such as times new roman
+      # LaTeX utils
+      - texlive-latex-base
+      - texlive
+      - texlive-fonts-recommended
+      - texlive-xetex
+      - texlive-fonts-extra
+      - texlive-latex-extra
+      - texlive-science
+      - pandoc
+      # Scanner software
+      - xsane
+      # flash
+      - flashplugin-installer
 
 - name: Install CompizConfig tool for Unity 16.04
   apt: pkg=compizconfig-settings-manager state=present

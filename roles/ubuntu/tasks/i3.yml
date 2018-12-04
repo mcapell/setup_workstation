@@ -2,17 +2,18 @@
   apt: pkg=i3 state=present
 
 - name: Utilities for i3 WM
-  apt: pkg={{ item }} state=present
-  with_items:
-    - xbacklight  # adjust screen light
-    - feh  # change background image
-    - arandr  # graphical tool to edit monitors interface
-    - rofi  # alternative to dmenu
-    - i3blocks  # tool to generate the status bar
-    - blueman  # tool to manage bluetooth from the status bar
-    - pavucontrol  # tool to manage audio
-    - lxappearance  # tool to configure GTK themes
-    - maim  # tool to take screenshots
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - xbacklight  # adjust screen light
+      - feh  # change background image
+      - arandr  # graphical tool to edit monitors interface
+      - rofi  # alternative to dmenu
+      - i3blocks  # tool to generate the status bar
+      - blueman  # tool to manage bluetooth from the status bar
+      - pavucontrol  # tool to manage audio
+      - lxappearance  # tool to configure GTK themes
+      - maim  # tool to take screenshots
 
 - name: Check playerctl is already installed
   command: dpkg-query -W playerctl

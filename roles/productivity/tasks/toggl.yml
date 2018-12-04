@@ -1,9 +1,10 @@
 ---
 - name: Install Toggl dependencies
-  apt: pkg={{ item }} state=present
-  with_items:
-    - libgstreamer-plugins-base0.10-0
-    - libgstreamer0.10-0
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - libgstreamer-plugins-base0.10-0
+      - libgstreamer0.10-0
 
 - name: Check toggl is installed
   command: dpkg-query -W toggldesktop

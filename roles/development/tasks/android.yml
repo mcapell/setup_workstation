@@ -22,21 +22,23 @@
   when: check_android is changed
 
 - name: Install Android SDKs
-  shell: "echo \"y\" | /opt/android-sdk-linux/tools/android update sdk -u -a -t {{ item }}"
-  with_items:
-    - tools
-    - platform-tools
-    - build-tools-23.0.1
-    - build-tools-22.0.1
-    - android-23
-    - android-22
-    - android-21
-    - extra
+  shell: "echo \"y\" | /opt/android-sdk-linux/tools/android update sdk -u -a -t {{ items }}"
+  vars:
+    items:
+      - tools
+      - platform-tools
+      - build-tools-23.0.1
+      - build-tools-22.0.1
+      - android-23
+      - android-22
+      - android-21
+      - extra
   args:
     executable: /bin/bash
   when: check_android is changed
 
 - name: Extra android tools
-  apt: package={{ item }} state=present
-  with_items:
-    - android-tools-adb
+  apt: package={{ items }} state=present
+  vars:
+    items:
+      - android-tools-adb

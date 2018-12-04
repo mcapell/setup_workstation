@@ -1,9 +1,10 @@
 ---
 - name: Install MySQL client
-  apt: pkg={{ item }} state=present
-  with_items:
-    - mysql-client
-    - libmysqlclient-dev
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - mysql-client
+      - libmysqlclient-dev
 
 - name: Install Redis client
   apt: pkg=redis-tools state=present

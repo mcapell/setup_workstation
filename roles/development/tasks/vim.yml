@@ -14,10 +14,11 @@
   when: vim_check.rc == 1
 
 - name: Install plugin dependencies
-  apt: pkg={{ item }} state=present
-  with_items:
-    - silversearcher-ag
-    - fonts-powerline
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - silversearcher-ag
+      - fonts-powerline
 
 - name: Check vimrc is configured
   stat:

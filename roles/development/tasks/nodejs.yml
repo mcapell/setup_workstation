@@ -1,10 +1,11 @@
 ---
 
 - name: Install nvm dependencies
-  apt: pkg={{ item }} state=present
-  with_items:
-    - build-essential
-    - libssl-dev
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - build-essential
+      - libssl-dev
 
 - name: Check if nvm is already installed
   stat:

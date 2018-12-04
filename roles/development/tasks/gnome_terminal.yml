@@ -1,8 +1,9 @@
 ---
 - name: Install requirements
-  apt: pkg={{ item }} state=present
-  with_items:
-    - dconf-cli
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - dconf-cli
 
 - name: Check solarized is already configured
   stat:

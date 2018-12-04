@@ -1,30 +1,28 @@
 ---
 - name: Install development packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - git
-    - exuberant-ctags
-    - figlet
-    - tree
-    - youtube-dl
-    - wget
-    - plantuml
-    - grep
-    - jq
-    - unrar
-    - p7zip
-    - python3-csvkit
-    # curl tools
-    - curl
-    - libcurl4-openssl-dev
-    # xml tools
-    - libxml2-dev
-    - libxslt1-dev
-    - libxml2-utils
-    - google-cloud-sdk
-
-
-#- keybase
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - git
+      - exuberant-ctags
+      - figlet
+      - tree
+      - youtube-dl
+      - wget
+      - plantuml
+      - grep
+      - jq
+      - unrar
+      - p7zip
+      - python3-csvkit
+      # curl tools
+      - curl
+      - libcurl4-openssl-dev
+      # xml tools
+      - libxml2-dev
+      - libxslt1-dev
+      - libxml2-utils
+      - google-cloud-sdk
 
 
 # Import other tasks

@@ -1,9 +1,10 @@
 ---
 - name: Install security packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - clamav
-    - rkhunter
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - clamav
+      - rkhunter
 
 - import_tasks: openvpn.yml
 - import_tasks: preyproject.yml

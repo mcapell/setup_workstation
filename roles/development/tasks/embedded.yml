@@ -1,18 +1,20 @@
 ---
 
 - name: Install embedded utilities
-  apt: pkg={{ item }} state=present
-  with_items:
-    - minicom
-    - picocom
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - minicom
+      - picocom
 
 - name: Install arduino
-  apt: pkg={{ item }} state=present
-  with_items:
-    - arduino-core
-    - arduino
-    - arduino-mk
-    - python-serial
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - arduino-core
+      - arduino
+      - arduino-mk
+      - python-serial
 
 - name: Install INO for arduino development
   pip: name=ino executable=pip2

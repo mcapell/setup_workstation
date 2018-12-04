@@ -1,8 +1,9 @@
 ---
 - name: Install design packages
-  apt: pkg={{ item }} state=present
-  with_items:
-    - imagemagick
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - imagemagick
 
 - import_tasks: gimp.yml
 - import_tasks: blender.yml

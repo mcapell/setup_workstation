@@ -1,12 +1,13 @@
 ---
 
 - name: Install monitoring tools
-  apt: pkg={{ item }} state=present
-  with_items:
-    - htop
-    - bmon
-    - iotop
-    - traceroute
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - htop
+      - bmon
+      - iotop
+      - traceroute
 
 - name: Check if wireshark is installed
   command: dpkg-query -W wireshark
