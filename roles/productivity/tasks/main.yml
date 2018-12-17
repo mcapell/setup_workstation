@@ -33,9 +33,10 @@
 
 - import_tasks: spotify.yml
 - import_tasks: slack.yml
+- import_tasks: skype.yml
+- import_tasks: discord.yml
 - import_tasks: spideroak.yml
 - import_tasks: toggl.yml
-- import_tasks: skype.yml
 - import_tasks: caffeine.yml
 - import_tasks: albert.yml
 - import_tasks: dragondisk.yml

@@ -1,0 +1,10 @@
+---
+- name: Check Discord is installed
+  command: snap list discord
+  register: discord_check
+  failed_when: discord_check.rc > 1
+  changed_when: discord_check.rc == 1
+
+- name: Install Discord
+  command: snap install discord
+  when: discord_check is changed
