@@ -41,3 +41,4 @@
 - import_tasks: albert.yml
 - import_tasks: dragondisk.yml
 - import_tasks: vlc_player.yml
+- import_tasks: peek.yml
