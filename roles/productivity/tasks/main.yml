@@ -42,3 +42,4 @@
 - import_tasks: dragondisk.yml
 - import_tasks: vlc_player.yml
 - import_tasks: peek.yml
+- import_tasks: calibre.yml
