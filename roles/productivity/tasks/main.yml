@@ -43,3 +43,4 @@
 - import_tasks: vlc_player.yml
 - import_tasks: peek.yml
 - import_tasks: calibre.yml
+- import_tasks: pdftk.yml
