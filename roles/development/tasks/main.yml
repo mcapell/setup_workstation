@@ -47,3 +47,4 @@
 - import_tasks: javascript.yml
 - import_tasks: terraform.yml
 - import_tasks: android.yml
+- import_tasks: r.yml
