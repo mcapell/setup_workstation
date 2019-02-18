@@ -38,7 +38,7 @@
 - import_tasks: spideroak.yml
 - import_tasks: toggl.yml
 - import_tasks: caffeine.yml
-- import_tasks: albert.yml
+# - import_tasks: albert.yml
 - import_tasks: dragondisk.yml
 - import_tasks: vlc_player.yml
 - import_tasks: peek.yml

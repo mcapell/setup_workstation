@@ -1,1 +1,10 @@
+---
+- name: Install Ubuntu-specific packages
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - update-manager-core
+      - ppa-purge
+      - gnome-tweak-tool
+
 - import_tasks: i3.yml

@@ -1,13 +1,13 @@
 ---
 
-- name: Use pyls with vim
-  pip: name=python-language-server executable=pip3
-
-- name: Instal virtualenv
-  pip: name=virtualenv executable=pip3
-
-- name: Instal pipenv
-  pip: name=pipenv executable=pip3
+#- name: Use pyls with vim
+#  pip: name=python-language-server executable=pip3
+#
+#- name: Instal virtualenv
+#  pip: name=virtualenv executable=pip3
+#
+#- name: Instal pipenv
+#  pip: name=pipenv executable=pip3
 
 - name: Check Pyflame is installed
   command: dpkg-query -W pyflame
@@ -26,33 +26,33 @@
 - name: Install Python2.x header file
   apt: pkg=python-dev state=present
 
-- name: Install Python3.x header file
-  apt: pkg=python3-dev state=present
+#- name: Install Python3.x header file
+#  apt: pkg=python3-dev state=present
 
 - name: Install tkinter
   apt: pkg={{ items }} state=present
   vars:
     items:
-      - python3.6-tk
+      # - python3.6-tk
       - python-tk
 
-- name: Check if Python3.6 is installed
-  command: dpkg-query -W python3.6
-  register: python36_check
-  failed_when: python36_check.rc > 1
-  changed_when: python36_check.rc == 1
-
-- name: Add Python3.6 repository on 16.04
-  apt_repository: repo="ppa:deadsnakes/ppa"
-  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
-
-- name: Install Python3.6 on 16.04
-  apt: pkg=python3.6 update_cache=yes state=present
-  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
-
-- name: Install Python3.6 header file on 16.04
-  apt: pkg=python3.6-dev update_cache=yes state=present
-  when: ansible_distribution_version == "16.04" and python36_check.rc == 1
+# - name: Check if Python3.6 is installed
+#   command: dpkg-query -W python3.6
+#   register: python36_check
+#   failed_when: python36_check.rc > 1
+#   changed_when: python36_check.rc == 1
+# 
+# - name: Add Python3.6 repository on 16.04
+#   apt_repository: repo="ppa:deadsnakes/ppa"
+#   when: ansible_distribution_version == "16.04" and python36_check.rc == 1
+# 
+# - name: Install Python3.6 on 16.04
+#   apt: pkg=python3.6 update_cache=yes state=present
+#   when: ansible_distribution_version == "16.04" and python36_check.rc == 1
+# 
+# - name: Install Python3.6 header file on 16.04
+#   apt: pkg=python3.6-dev update_cache=yes state=present
+#   when: ansible_distribution_version == "16.04" and python36_check.rc == 1
 
 - name: Check py-spy is installed
   stat:

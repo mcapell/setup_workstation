@@ -1,6 +1,6 @@
 ---
 - name: Check R is already installed
-  command: dpkg-query -W R
+  command: dpkg-query -W r-base
   register: rlang_check
   failed_when: rlang_check.rc > 1
   changed_when: rlang_check.rc == 1

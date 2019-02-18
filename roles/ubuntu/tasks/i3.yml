@@ -14,6 +14,7 @@
       - pavucontrol  # tool to manage audio
       - lxappearance  # tool to configure GTK themes
       - maim  # tool to take screenshots
+      - arc-theme  # Nice theme for GTK and QT
 
 - name: Check playerctl is already installed
   command: dpkg-query -W playerctl

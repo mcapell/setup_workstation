@@ -27,7 +27,7 @@
   when: mongodb_check.rc == 1
 
 - name: Add MongoDB ORG repo
-  apt_repository: repo='deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse'
+  apt_repository: repo='deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/3.6 multiverse'
   when: mongodb_check.rc == 1
 
 - name: Install MongoDB client
