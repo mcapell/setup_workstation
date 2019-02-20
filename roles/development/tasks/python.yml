@@ -1,13 +1,41 @@
 ---
 
-#- name: Use pyls with vim
-#  pip: name=python-language-server executable=pip3
-#
-#- name: Instal virtualenv
-#  pip: name=virtualenv executable=pip3
-#
-#- name: Instal pipenv
-#  pip: name=pipenv executable=pip3
+- name: Use pyls tools with vim
+  pip: name={{ items }} executable=pip
+  vars:
+    items:
+      - python-language-server
+      - python-language-server[rope]
+      - python-language-server[mccabe]
+      - python-language-server[pycodestyle]
+      - python-language-server[yapf]
+      - rope
+      - mccabe
+      - pycodestyle
+      - yapf
+
+- name: Instal Python tools
+  pip: name={{ items }} executable=pip3
+  vars:
+    items:
+      - pipenv
+      - virtualenv
+      - virtualenvwrapper
+
+- name: Check pyenv exists
+  stat:
+    path: "/home/{{ local_user }}/.pyenv"
+  register: pyenv_check
+  changed_when: pyenv_check.stat.exists == false
+
+- name: Install pyenv as python version manager
+  git:
+    repo: "https://github.com/pyenv/pyenv.git"
+    dest: "/home/{{ local_user }}/.pyenv"
+    version: master
+  become: yes
+  become_user: "{{ local_user }}"
+  when: pyenv_check is changed
 
 - name: Check Pyflame is installed
   command: dpkg-query -W pyflame
