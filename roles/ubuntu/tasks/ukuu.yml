@@ -1,0 +1,13 @@
+- name: Check UKUU is already installed
+  command: dpkg-query -W ukuu
+  register: ukuu_check
+  failed_when: ukuu_check.rc > 1
+  changed_when: ukuu_check.rc == 1
+
+- name: Add UKUU repository
+  apt_repository: repo="ppa:teejee2008/ppa"
+  when: ukuu_check is changed
+
+- name: Install UKUU kernel switcher GUI
+  apt: pkg=ukuu update_cache=yes state=present
+  when: ukuu_check is changed
