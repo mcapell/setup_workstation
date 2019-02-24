@@ -1,5 +1,35 @@
 ---
 
+- name: Install docker requirements
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+
+- name: Check docker is installed
+  command: dpkg-query -W docker
+  register: docker_check
+  failed_when: docker_check.rc > 1
+  changed_when: docker_check.rc == 1
+
+- name: Add docker's apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: docker_check is changed
+
+- name: Add docker repository
+  apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+  when: docker_check is changed
+
+- name: Install docker CE
+  apt: pkg=docker-ce update_cache=yes state=present
+  when: docker_check is changed
+
+
 - name: Check docker-machine is installed
   command: which docker-machine
   register: check_dm
