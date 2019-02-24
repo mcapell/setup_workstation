@@ -7,11 +7,11 @@
 
 - name: Add vim repository
   apt_repository: repo="ppa:jonathonf/vim"
-  when: vim_check.rc == 1
+  when: vim_check is changed
 
 - name: Install vim
   apt: pkg=vim update_cache=yes state=present
-  when: vim_check.rc == 1
+  when: vim_check is changed
 
 - name: Install plugin dependencies
   apt: pkg={{ items }} state=present

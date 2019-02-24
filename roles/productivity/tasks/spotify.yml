@@ -4,16 +4,18 @@
   register: spotify_check
   failed_when: spotify_check.rc > 1
   changed_when: spotify_check.rc == 1
-#- name: Add Apt Keys
-#  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id={{ item }} state=present
-#  with_items:
-#    - BBEBDCB318AD50EC6865090613B00F1FD2C19886
-#    - 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+
+- name: Add spotify repo keys
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+    state: present
+  when: spotify_check is changed
 
 - name: Add repository
   apt_repository: repo='deb http://repository.spotify.com stable non-free'
-  when: spotify_check.rc == 1
+  when: spotify_check is changed
 
 - name: Install spotify
   apt: name=spotify-client update_cache=yes state=present
-  when: spotify_check.rc == 1
+  when: spotify_check is changed

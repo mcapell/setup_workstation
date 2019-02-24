@@ -16,6 +16,7 @@
     src: "/usr/local/lib/FlameGraph/{{ items }}"
     dest: "/usr/local/bin/{{ items }}"
     state: link
+    force: yes
   vars:
     items:
       - "flamegraph.pl"

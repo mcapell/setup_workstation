@@ -5,9 +5,6 @@
   failed_when: slack_check.rc > 1
   changed_when: slack_check.rc == 1
 
-- debug: msg="slack exists"
-  when: slack_check.rc == 1
-
 - name: Install slack
   command: snap install slack --classic
   when: slack_check.rc == 1

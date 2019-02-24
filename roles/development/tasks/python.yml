@@ -1,27 +1,27 @@
 ---
 
-- name: Use pyls tools with vim
-  pip: name={{ items }} executable=pip
-  vars:
-    items:
-      - python-language-server
-      - python-language-server[rope]
-      - python-language-server[mccabe]
-      - python-language-server[pycodestyle]
-      - python-language-server[yapf]
-      - rope
-      - mccabe
-      - pycodestyle
-      - yapf
-
-- name: Instal Python tools
-  pip: name={{ items }} executable=pip3
-  vars:
-    items:
-      - pipenv
-      - virtualenv
-      - virtualenvwrapper
-
+# - name: Use pyls tools with vim
+#   pip: name={{ items }} executable=pip
+#   vars:
+#     items:
+#       - python-language-server
+#       - python-language-server[rope]
+#       - python-language-server[mccabe]
+#       - python-language-server[pycodestyle]
+#       - python-language-server[yapf]
+#       - rope
+#       - mccabe
+#       - pycodestyle
+#       - yapf
+# 
+# - name: Instal Python tools
+#   pip: name={{ items }} executable=pip3
+#   vars:
+#     items:
+#       - pipenv
+#       - virtualenv
+#       - virtualenvwrapper
+# 
 - name: Check pyenv exists
   stat:
     path: "/home/{{ local_user }}/.pyenv"

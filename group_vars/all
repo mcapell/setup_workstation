@@ -1,11 +1,11 @@
 # Localhost variables
 local_user: marc
-local_terminal_profile: solarized
+local_terminal_profile: marc
 
 # repositories
 repo_vimrc: https://github.com/mcapell/vimrc.git
 repo_dotfiles: https://github.com/mcapell/dotfiles.git
-repo_gnome_terminal_solarized: https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+repo_gnome_terminal_solarized: https://github.com/metalelf0/gnome-terminal-colors.git
 repo_fzf: https://github.com/junegunn/fzf.git
 
 # Binary versions
