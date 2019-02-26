@@ -21,7 +21,7 @@
 #       - pipenv
 #       - virtualenv
 #       - virtualenvwrapper
-# 
+
 - name: Check pyenv exists
   stat:
     path: "/home/{{ local_user }}/.pyenv"
@@ -36,6 +36,22 @@
   become: yes
   become_user: "{{ local_user }}"
   when: pyenv_check is changed
+
+- name: Check pipenv exists
+  stat:
+    path: "/home/{{ local_user }}/.virtualenvs"
+  register: pipenv_check
+  changed_when: pipenv_check.stat.exists == false
+
+- name: Download pipenv installer
+  get_url:
+    url="https://raw.githubusercontent.com/kennethreitz/pipenv/master/get-pipenv.py"
+    dest="/tmp/get-pipenv.py"
+  when: pipenv_check is changed
+
+- name: Install pipenv
+  command: python /tmp/get-pipenv.py
+  when: pipenv_check is changed
 
 - name: Check Pyflame is installed
   command: dpkg-query -W pyflame
