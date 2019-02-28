@@ -13,14 +13,12 @@
 #       - mccabe
 #       - pycodestyle
 #       - yapf
-# 
-# - name: Instal Python tools
-#   pip: name={{ items }} executable=pip3
-#   vars:
-#     items:
-#       - pipenv
-#       - virtualenv
-#       - virtualenvwrapper
+
+- name: Install python tools
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - python-pysqlite2
 
 - name: Check pyenv exists
   stat:
@@ -39,7 +37,7 @@
 
 - name: Check pipenv exists
   stat:
-    path: "/home/{{ local_user }}/.virtualenvs"
+    path: "/home/{{ local_user }}/.local/share/virtualenvs"
   register: pipenv_check
   changed_when: pipenv_check.stat.exists == false
 

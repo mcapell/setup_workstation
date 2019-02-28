@@ -10,7 +10,11 @@
   apt: pkg=redis-tools state=present
 
 - name: Install SQLite3
-  apt: pkg=sqlite3 state=present
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - sqlite3
+      - libsqlite3-dev
 
 # Install MongoDB latest version
 - name: Check MongoDB is installed
