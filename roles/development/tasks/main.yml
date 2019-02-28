@@ -4,6 +4,7 @@
   vars:
     items:
       - git
+      - tig  # git history tool
       - exuberant-ctags
       - figlet
       - tree
