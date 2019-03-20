@@ -7,7 +7,6 @@
 
 - name: Add R repository
   apt_repository: repo="ppa:marutter/rrutter"
-  when: rlang_check is changed
 
 - name: Install R
   apt: pkg={{ items }} update_cache=yes state=present

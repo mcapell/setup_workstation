@@ -41,3 +41,9 @@
     dest: "/home/{{ local_user }}/.vimrc"
     state: link
   when: vimrc_check is changed
+
+- name: Add NeoVim repository
+  apt_repository: repo="ppa:neovim-ppa/stable"
+
+- name: Install neovim
+  apt: pkg=neovim state=present

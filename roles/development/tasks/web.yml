@@ -2,3 +2,6 @@
 
 - name: Install compass
   gem: name=compass state=present
+
+- name: Install less
+  apt: pkg=node-less state=present
