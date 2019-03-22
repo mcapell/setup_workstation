@@ -35,6 +35,9 @@
   become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
+# - name: Install pipx
+#   pip: executable=pip3 name=pipx
+
 - name: Check pipenv exists
   stat:
     path: "/home/{{ local_user }}/.local/share/virtualenvs"
