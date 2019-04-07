@@ -13,6 +13,7 @@
       - beep
       - quassel  # IRC client based on weechat
       - ttf-mscorefonts-installer  # for fonts such as times new roman
+      - csvkit
       # LaTeX utils
       - texlive-latex-base
       - texlive
