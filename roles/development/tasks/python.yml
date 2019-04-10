@@ -37,6 +37,24 @@
 
 # - name: Install pipx
 #   pip: executable=pip3 name=pipx
+#
+# - name: Install PYLS
+#   pip: name=python-language-server executable=pipx
+#   register: pyls_check
+#   changed_when: pyls_check.rc == 0
+#   become: yes
+#   become_user: "{{ local_user }}"
+# 
+# - name: Install PYLS dependencies
+#   cmd: pipx inject python-language-server {{ item }}
+#   with_items:
+#     - python-language-server[rope]
+#     - python-language-server[pyflakes]
+#     - python-language-server[mccabe]
+#     - python-language-server[pycodestyle]
+#   when: pyls_check is changed
+#   become: yes
+#   become_user: "{{ local_user }}"
 
 - name: Check pipenv exists
   stat:
