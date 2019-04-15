@@ -1,19 +1,5 @@
 ---
 
-# - name: Use pyls tools with vim
-#   pip: name={{ items }} executable=pip
-#   vars:
-#     items:
-#       - python-language-server
-#       - python-language-server[rope]
-#       - python-language-server[mccabe]
-#       - python-language-server[pycodestyle]
-#       - python-language-server[yapf]
-#       - rope
-#       - mccabe
-#       - pycodestyle
-#       - yapf
-
 - name: Install python tools
   apt: name={{ items }} state=present
   vars:
@@ -35,26 +21,37 @@
   become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
-# - name: Install pipx
-#   pip: executable=pip3 name=pipx
-#
-# - name: Install PYLS
-#   pip: name=python-language-server executable=pipx
-#   register: pyls_check
-#   changed_when: pyls_check.rc == 0
-#   become: yes
-#   become_user: "{{ local_user }}"
-# 
-# - name: Install PYLS dependencies
-#   cmd: pipx inject python-language-server {{ item }}
-#   with_items:
-#     - python-language-server[rope]
-#     - python-language-server[pyflakes]
-#     - python-language-server[mccabe]
-#     - python-language-server[pycodestyle]
-#   when: pyls_check is changed
-#   become: yes
-#   become_user: "{{ local_user }}"
+- name: Install python3 using pyenv
+  shell: /home/{{ local_user }}/.pyenv/bin/pyenv install {{ bin_python3 }}
+  become: yes
+  become_user: "{{ local_user }}"
+  when: pyenv_check is changed
+
+- name: Install pipx
+  pip: executable=/home/{{ local_user }}/.pyenv/shims/pip3 name=pipx
+
+- name: Check PYLS is already installed
+  stat:
+    path: "/home/{{ local_user }}/.local/bin/pyls"
+  register: pyls_check
+  changed_when: pyls_check.stat.exists == false
+
+- name: Install PYLS
+  pip: name=python-language-server executable=/home/{{ local_user }}/.pyenv/shims/pipx
+  become: yes
+  become_user: "{{ local_user }}"
+  when: pyls_check is changed
+
+- name: Install PYLS dependencies
+  command: /home/{{ local_user }}/.pyenv/shims/pipx inject python-language-server {{ item }}
+  with_items:
+    - python-language-server[rope]
+    - python-language-server[pyflakes]
+    - python-language-server[mccabe]
+    - python-language-server[pycodestyle]
+  become: yes
+  become_user: "{{ local_user }}"
+  when: pyls_check is changed
 
 - name: Check pipenv exists
   stat:
