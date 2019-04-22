@@ -7,6 +7,7 @@
       - firefox
       - filezilla
       - thunderbird
+      - gnome-shell-pomodoro
       - mdp  # markdown presentations
       - ledger  # accouting for hackers
       - lm-sensors  # laptop sensor information (temp, fan rpm..)
