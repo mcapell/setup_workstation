@@ -13,7 +13,7 @@
   when: spideroak_check is changed
 
 - name: Add Spideroak repository
-  apt_repository: repo='deb http://APT.spideroak.com/ubuntu-spideroak-hardy/ release restricted'
+  apt_repository: repo='deb http://apt.spideroak.com/ubuntu-spideroak-hardy/ release restricted'
   when: spideroak_check is changed
 
 - name: Install spideroak
