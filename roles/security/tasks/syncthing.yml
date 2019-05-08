@@ -1,0 +1,20 @@
+---
+- name: Check if syncthing is already installed
+  command: dpkg-query -W syncthing
+  register: syncthing_check
+  failed_when: syncthing_check.rc > 1
+  changed_when: syncthing_check.rc == 1
+
+- name: Add Syncthing repository key
+  apt_key:
+    url: https://syncthing.net/release-key.txt
+    state: present
+  when: syncthing_check is changed
+
+- name: Add Syncthing repository
+  apt_repository: repo='deb https://apt.syncthing.net/ syncthing stable'
+  when: syncthing_check is changed
+
+- name: Install Syncthing
+  apt: name=syncthing update_cache=yes state=present
+  when: syncthing_check is changed

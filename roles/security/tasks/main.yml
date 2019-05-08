@@ -12,3 +12,4 @@
 - import_tasks: keepassxc.yml
 - import_tasks: backup.yml
 - import_tasks: pentesting.yml
+- import_tasks: syncthing.yml
