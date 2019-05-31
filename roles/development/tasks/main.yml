@@ -8,7 +8,7 @@
       - exuberant-ctags
       - figlet
       - tree
-      - youtube-dl
+      - sox  # normalize audio
       - wget
       - plantuml
       - grep
