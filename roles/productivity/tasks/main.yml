@@ -15,6 +15,7 @@
       - quassel  # IRC client based on weechat
       - ttf-mscorefonts-installer  # for fonts such as times new roman
       - csvkit
+      - p7zip-full
       # LaTeX utils
       - texlive-latex-base
       - texlive
