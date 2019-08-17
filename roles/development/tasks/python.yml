@@ -12,6 +12,27 @@
   register: pyenv_check
   changed_when: pyenv_check.stat.exists == false
 
+- name: Install pyenv requirements to build Python versions
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - llvm
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libffi-dev
+      - liblzma-dev
+      - python-openssl
+  when: pyenv_check is changed
+
 - name: Install pyenv as python version manager
   git:
     repo: "https://github.com/pyenv/pyenv.git"
@@ -25,6 +46,10 @@
   shell: /home/{{ local_user }}/.pyenv/bin/pyenv install {{ bin_python3 }}
   become: yes
   become_user: "{{ local_user }}"
+  when: pyenv_check is changed
+
+- name: Set new installed python version as global
+  command: /home/{{ local_user }}/.pyenv/bin/pyenv global {{ bin_python3 }}
   when: pyenv_check is changed
 
 - name: Install pipx
@@ -100,5 +125,7 @@
   changed_when: check_pyspy.stat.exists == false
 
 - name: Install py-spy
-  command: /home/{{ local_user }}/.cargo/bin/cargo install py-spy
+  pip: name=py-spy executable=/home/{{ local_user }}/.pyenv/shims/pipx
+  become: yes
+  become_user: "{{ local_user }}"
   when: check_pyspy is changed

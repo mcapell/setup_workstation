@@ -23,7 +23,7 @@
       - libxml2-dev
       - libxslt1-dev
       - libxml2-utils
-      - google-cloud-sdk
+      # - google-cloud-sdk
 
 
 # Import other tasks

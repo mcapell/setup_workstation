@@ -43,7 +43,7 @@
   when: vimrc_check is changed
 
 - name: Add NeoVim repository
-  apt_repository: repo="ppa:neovim-ppa/stable"
+  apt_repository: repo="ppa:neovim-ppa/unstable"
 
 - name: Install neovim
   apt: pkg=neovim state=present
