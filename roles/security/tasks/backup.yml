@@ -1,18 +1,4 @@
 ---
 
-- name: Check if BackInTime is installed
-  command: dpkg-query -W backintime-gnome
-  register: backintime_check
-  failed_when: backintime_check.rc > 1
-  changed_when: backintime_check.rc == 1
-
-- name: Add BackInTime repository
-  apt_repository: repo="ppa:bit-team/stable"
-  when: backintime_check.rc == 1
-
-- name: Install BackInTime
-  apt: pkg=backintime-gnome update_cache=yes state=present
-  when: backintime_check.rc == 1
-
 - name: Install Borg Backup
   apt: pkg=borgbackup state=present
