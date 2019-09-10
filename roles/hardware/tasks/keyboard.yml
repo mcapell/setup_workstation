@@ -1,8 +1,0 @@
----
-
-# TODO fix this -> check /etc/sysctl.conf?
-# - name: Switch external apple Fn keys
-#   modprobe:
-#     name: hid_apple
-#     params: "fnmode=2"
-#     state: present

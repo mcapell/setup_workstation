@@ -1,4 +1,1 @@
 ---
-
-- include_tasks: keyboard.yml
-- include_tasks: touchpad.yml
