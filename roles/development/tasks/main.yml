@@ -35,7 +35,7 @@
 - import_tasks: flamegraph.yml
 - import_tasks: dotfiles.yml
 - import_tasks: gnome_terminal.yml
-- import_tasks: databases.yml
+# - import_tasks: databases.yml
 - import_tasks: python.yml
 - import_tasks: tmux.yml
 - import_tasks: nodejs.yml
@@ -43,9 +43,9 @@
 - import_tasks: ruby.yml
 - import_tasks: web.yml
 # - import_tasks: embedded.yml
-- import_tasks: emacs.yml
+# - import_tasks: emacs.yml
 - import_tasks: docker.yml
 # - import_tasks: javascript.yml
 - import_tasks: terraform.yml
 # - import_tasks: android.yml
-- import_tasks: r.yml
+# - import_tasks: r.yml

@@ -14,8 +14,8 @@
   when: dotfiles_check.stat.exists == false
 
 # FIXME: Does not work :-/
-- name: Run setup
-  shell: "bash /home/{{ local_user }}/.dotfiles/setup.sh"
-  become: yes
-  become_user: "{{ local_user }}"
-  when: dotfiles_check.stat.exists == false
+# - name: Run setup
+#   shell: "bash /home/{{ local_user }}/.dotfiles/setup.sh"
+#   become: yes
+#   become_user: "{{ local_user }}"
+#   when: dotfiles_check.stat.exists == false
