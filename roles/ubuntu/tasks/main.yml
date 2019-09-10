@@ -3,10 +3,8 @@
   apt: pkg={{ items }} state=present
   vars:
     items:
-      - update-manager-core
-      - ppa-purge
-      - gnome-tweak-tool
       - resolvconf
 
-- import_tasks: i3.yml
-- import_tasks: ukuu.yml
+# - import_tasks: i3.yml
+# - import_tasks: ukuu.yml
+- import_tasks: keyboard.yml
