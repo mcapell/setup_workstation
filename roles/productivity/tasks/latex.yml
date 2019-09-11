@@ -1,0 +1,15 @@
+---
+
+- name: Install latex utils
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - texlive-latex-base
+      - texlive
+      - texlive-fonts-recommended
+      - texlive-xetex
+      - texlive-fonts-extra
+      - texlive-latex-extra
+      - texlive-science
+      - pandoc
+

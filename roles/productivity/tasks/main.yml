@@ -3,7 +3,6 @@
   apt: pkg={{ items }} state=present
   vars:
     items:
-      - pass  # password manager
       - firefox
       - filezilla
       - thunderbird
@@ -16,35 +15,16 @@
       - ttf-mscorefonts-installer  # for fonts such as times new roman
       - csvkit
       - p7zip-full
-      # LaTeX utils
-      - texlive-latex-base
-      - texlive
-      - texlive-fonts-recommended
-      - texlive-xetex
-      - texlive-fonts-extra
-      - texlive-latex-extra
-      - texlive-science
-      - pandoc
-      # Scanner software
-      - xsane
-      # flash
-      - flashplugin-installer
-
-- name: Install CompizConfig tool for Unity 16.04
-  apt: pkg=compizconfig-settings-manager state=present
-  when: ansible_distribution_version == "16.04"
+      - flashplugin-installer  # flash
 
 - import_tasks: spotify.yml
 - import_tasks: slack.yml
 - import_tasks: skype.yml
 - import_tasks: discord.yml
-- import_tasks: spideroak.yml
 - import_tasks: toggl.yml
-# - import_tasks: caffeine.yml
-# - import_tasks: albert.yml
 - import_tasks: dragondisk.yml
 - import_tasks: vlc_player.yml
 - import_tasks: peek.yml
 - import_tasks: calibre.yml
-- import_tasks: pdftk.yml
-# - import_tasks: qucs.yml
+# - import_tasks: pdftk.yml
+- import_tasks: latex.yml

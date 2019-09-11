@@ -18,8 +18,8 @@
 - name: Install dependencies
   apt: deb="/tmp/{{ item }}"
   with_items:
-    - "libgstreamer-plugins-base0.10-0_0.10.36-1_amd64.deb"
     - "libgstreamer0.10-0_0.10.36-1.5ubuntu1_amd64.deb"
+    - "libgstreamer-plugins-base0.10-0_0.10.36-1_amd64.deb"
   when: toggl_check is changed
 
 - name: Download toggl deb
