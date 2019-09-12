@@ -22,6 +22,16 @@
     - "libgstreamer-plugins-base0.10-0_0.10.36-1_amd64.deb"
   when: toggl_check is changed
 
+- name: Install other APT dependencies
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - libqt5webengine5
+      - libqt5webenginecore5
+      - libqt5webenginewidgets5
+      - libqt5quickwidgets5
+  when: toggl_check is changed
+
 - name: Download toggl deb
   get_url:
      url="https://toggl.com/api/v8/installer?app=td&platform=deb64&channel=stable"
