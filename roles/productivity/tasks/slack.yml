@@ -1,10 +1,14 @@
 ---
 - name: Check slack is installed
-  command: snap list slack
+  command: dpkg-query -W slack-desktop
   register: slack_check
   failed_when: slack_check.rc > 1
   changed_when: slack_check.rc == 1
 
+- name: Download slack installer
+  get_url:
+    url="https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ bin_slack }}-amd64.deb"
+    dest="/tmp/"
+
 - name: Install slack
-  command: snap install slack --classic
-  when: slack_check.rc == 1
+  apt: deb="/tmp/slack-desktop-{{ bin_slack }}-amd64.deb"
