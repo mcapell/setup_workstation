@@ -49,3 +49,4 @@
 - import_tasks: terraform.yml
 # - import_tasks: android.yml
 # - import_tasks: r.yml
+- import_tasks: java.yml
