@@ -9,3 +9,19 @@
     items:
       - network-manager-openvpn
       - network-manager-openvpn-gnome
+
+- name: Update openvpn configuration
+  template:
+    src: openvpn.j2
+    dest: /etc/default/openvpn
+    force: yes
+    owner: root
+    group: root
+    mode: 'u=rw,go=r'
+
+- name: Disable openvpn service
+  systemd:
+    name: openvpn
+    enabled: no
+  notify:
+    - openvpn reload-systemd

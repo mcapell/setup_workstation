@@ -1,0 +1,4 @@
+---
+
+- name: openvpn reload-systemd
+  command: systemctl daemon-reload
