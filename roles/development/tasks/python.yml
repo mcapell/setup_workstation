@@ -49,8 +49,10 @@
   become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
-- name: Set new installed python version as global
-  command: /home/{{ local_user }}/.pyenv/bin/pyenv global {{ bin_python | first }}
+- name: Set new installed python versions as global
+  command: /home/{{ local_user }}/.pyenv/bin/pyenv global {{ bin_python | join(" ") }}
+  become: yes
+  become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
 - name: Install pipx

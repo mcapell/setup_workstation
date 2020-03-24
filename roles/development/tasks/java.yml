@@ -10,7 +10,10 @@
 - name: Add OpenJDK8 JRE
   apt: pkg=openjdk-8-jre state=present
 
+- name: Add OpenJDK 11 JDK
+  apt: pkg=openjdk-11-jdk state=present
+
 - name: Use OpenJDK by default
   alternatives:
     name: java
-    path: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+    path: /usr/lib/jvm/java-11-openjdk-amd64/bin/java

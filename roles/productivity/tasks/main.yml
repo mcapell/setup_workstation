@@ -16,9 +16,11 @@
       - csvkit
       - p7zip-full
       - flashplugin-installer  # flash
+      - taskwarrior
+      - telegram-desktop
 
 - import_tasks: spotify.yml
-- import_tasks: slack.yml
+# - import_tasks: slack.yml
 - import_tasks: skype.yml
 - import_tasks: discord.yml
 - import_tasks: toggl.yml

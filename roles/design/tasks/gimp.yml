@@ -1,5 +1,5 @@
 - name: Check if gimp is installed
-  command: dpkg-query -W gimp
+  command: which gimp
   register: gimp_check
   failed_when: gimp_check.rc > 1
   changed_when: gimp_check.rc == 1

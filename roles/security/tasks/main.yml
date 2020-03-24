@@ -5,6 +5,8 @@
     items:
       - clamav
       - rkhunter
+      - exiftool
+      - qpdf
 
 - import_tasks: openvpn.yml
 - import_tasks: preyproject.yml
