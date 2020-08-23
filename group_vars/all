@@ -11,8 +11,8 @@ repo_fzf: https://github.com/junegunn/fzf.git
 # Binary versions
 bin_docker_machine: v0.15.0
 bin_docker_compose: 1.23.2
-bin_terraform: 0.12.23
-bin_playerctl: 0.6.1
+bin_terraform: 0.12.24
+bin_playerctl: 2.2.1
 bin_python:  # first one will be set as system's default
   - 3.6.8
   - 3.7.4
