@@ -50,3 +50,4 @@
 # - import_tasks: android.yml
 # - import_tasks: r.yml
 - import_tasks: java.yml
+- import_tasks: alacritty.yml
