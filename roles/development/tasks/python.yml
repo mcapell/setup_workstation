@@ -123,7 +123,7 @@
 
 - name: Check py-spy is installed
   stat:
-    path: /home/{{ local_user }}/.cargo/bin/py-spy
+    path: /home/{{ local_user }}/.local/bin/py-spy
   register: check_pyspy
   changed_when: check_pyspy.stat.exists == false
 

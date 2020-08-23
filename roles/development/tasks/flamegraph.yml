@@ -13,12 +13,11 @@
 
 - name: Symlink flamegraph binaries
   file:
-    src: "/usr/local/lib/FlameGraph/{{ items }}"
-    dest: "/usr/local/bin/{{ items }}"
+    src: "/usr/local/lib/FlameGraph/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
     state: link
     force: yes
-  vars:
-    items:
-      - "flamegraph.pl"
-      - "stackcollapse-perf.pl"
+  with_items:
+    - "flamegraph.pl"
+    - "stackcollapse-perf.pl"
   when: flamegraph_check.stat.exists == false
