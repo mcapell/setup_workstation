@@ -15,6 +15,7 @@
       - lxappearance  # tool to configure GTK themes
       - maim  # tool to take screenshots
       - arc-theme  # Nice theme for GTK and QT
+      - xautolock  # autolock after X mins
 
 - name: Check playerctl is already installed
   command: dpkg-query -W playerctl
