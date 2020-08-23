@@ -7,6 +7,7 @@
       - rkhunter
       - exiftool
       - qpdf
+      - nmap
 
 - import_tasks: openvpn.yml
 - import_tasks: preyproject.yml

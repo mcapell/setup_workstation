@@ -17,7 +17,9 @@
       - p7zip-full
       - flashplugin-installer  # flash
       - taskwarrior
+      - timewarrior
       - telegram-desktop
+      - zathura  # document reader
 
 - import_tasks: spotify.yml
 # - import_tasks: slack.yml
