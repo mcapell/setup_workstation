@@ -17,7 +17,6 @@
       - p7zip-full
       - flashplugin-installer  # flash
       - taskwarrior
-      - timewarrior
       - telegram-desktop
       - zathura  # document reader
 
@@ -32,3 +31,4 @@
 - import_tasks: calibre.yml
 # - import_tasks: pdftk.yml
 - import_tasks: latex.yml
+- import_tasks: timewarrior.yml

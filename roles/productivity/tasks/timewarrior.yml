@@ -1,0 +1,20 @@
+---
+
+- name: timewarrior already installed
+  command: dpkg-query -W timewarrior
+  register: timewarrior_check
+  failed_when: timewarrior_check.rc > 1
+  changed_when: timewarrior_check.rc == 1
+
+- name: Install timewarrior
+  apt: pkg=timewarrior state=present
+  when: timewarrior_check is changed
+
+- name: Integrate timewarrior into taskwarrior
+  get_url:
+    url: "https://raw.githubusercontent.com/GothenburgBitFactory/timewarrior/dev/ext/on-modify.timewarrior"
+    dest: "/home/{{ local_user }}/.task/hooks/on-modify.timewarrior"
+    mode: "0775"
+  become: yes
+  become_user: "{{ local_user }}"
+  when: timewarrior_check is changed
