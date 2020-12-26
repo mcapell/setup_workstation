@@ -21,7 +21,7 @@
   when: wireshark_check.rc == 1
 
 - name: Install Wireshark
-  apt: pkg=wireshark update_cache=yes state=present
+  apt: pkg=wireshark state=present
   when: wireshark_check.rc == 1
 
 - name: Install glances

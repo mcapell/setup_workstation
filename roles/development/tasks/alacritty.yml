@@ -11,7 +11,7 @@
   when: alacritty_check is changed
 
 - name: Install Alacritty
-  apt: pkg=alacritty update_cache=yes state=present
+  apt: pkg=alacritty state=present
   when: alacritty_check is changed
 
 - name: Use Alacritty as the default terminal

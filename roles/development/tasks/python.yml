@@ -98,20 +98,6 @@
   command: python /tmp/get-pipenv.py
   when: pipenv_check is changed
 
-- name: Check Pyflame is installed
-  command: dpkg-query -W pyflame
-  register: pyflame_check
-  failed_when: pyflame_check.rc > 1
-  changed_when: pyflame_check.rc == 1
-
-- name: Add Pyflame repository
-  apt_repository: repo="ppa:trevorjay/pyflame"
-  when: pyflame_check.rc == 1
-
-- name: Install Pyflame
-  apt: pkg=pyflame update_cache=yes state=present
-  when: pyflame_check.rc == 1
-
 - name: Install Python2.x header file
   apt: pkg=python-dev state=present
 

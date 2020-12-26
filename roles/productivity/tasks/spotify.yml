@@ -1,21 +1,11 @@
 ---
 
 - name: Check if spotify is already installed
-  command: dpkg-query -W spotify-client
+  command: snap list spotify
   register: spotify_check
   failed_when: spotify_check.rc > 1
   changed_when: spotify_check.rc == 1
 
-- name: Add spotify repo keys
-  apt_key:
-    url: https://download.spotify.com/debian/pubkey.gpg
-    state: present
-  when: spotify_check is changed
-
-- name: Add repository
-  apt_repository: repo='deb http://repository.spotify.com stable non-free'
-  when: spotify_check is changed
-
 - name: Install spotify
-  apt: name=spotify-client update_cache=yes state=present
+  command: snap install spotify
   when: spotify_check is changed

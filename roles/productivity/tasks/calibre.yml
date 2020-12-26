@@ -4,10 +4,6 @@
   failed_when: calibre_check.rc > 1
   changed_when: calibre_check.rc == 1
 
-- name: Add Calibre non-official repository
-  apt_repository: repo="ppa:jonathonf/calibre"
-  when: calibre_check is changed
-
 - name: Install Calibre
-  apt: pkg=calibre update_cache=yes state=present
+  apt: pkg=calibre state=present
   when: calibre_check is changed

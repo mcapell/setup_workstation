@@ -1,10 +1,10 @@
 ---
 
-- name: Install requirements for VLC and UPnP client
-  apt: pkg={{ items }} state=present
-  vars:
-    items:
-      - libupnp6  # needed for VLC to play UPnP
+# - name: Install requirements for VLC and UPnP client
+#   apt: pkg={{ items }} state=present
+#   vars:
+#     items:
+#       - libupnp6  # needed for VLC to play UPnP
 
 - name: Check if vlc is already installed
   command: dpkg-query -W vlc

@@ -11,5 +11,5 @@
   when: keepass_check.rc == 1
 
 - name: Install KeepassXC
-  apt: pkg=keepassxc update_cache=yes state=present
+  apt: pkg=keepassxc state=present
   when: keepass_check.rc == 1

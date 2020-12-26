@@ -7,4 +7,4 @@
       - pinta  # ~paint for linux
 
 - import_tasks: gimp.yml
-- import_tasks: blender.yml
+# - import_tasks: blender.yml

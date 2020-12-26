@@ -18,28 +18,28 @@
 
 # Install MongoDB latest version
 - name: Check MongoDB is installed
-  command: dpkg-query -W mongodb-org*
+  command: dpkg-query -W mongodb-clients
   register: mongodb_check
   failed_when: mongodb_check.rc > 1
   changed_when: mongodb_check.rc == 1
 
 - name: Import MongoDB org repo key
   apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+    url: https://www.mongodb.org/static/pgp/server-4.4.asc
     state: present
   when: mongodb_check.rc == 1
 
 - name: Add MongoDB ORG repo
-  apt_repository: repo='deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse'
+  apt_repository:
+    repo: 'deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu {{ ansible_distribution_release }}/mongodb-org/4.4 multiverse'
   when: mongodb_check.rc == 1
 
 - name: Install MongoDB client
-  apt: pkg=mongodb-org-shell update_cache=yes state=present
+  apt: pkg=mongodb-clients state=present
   when: mongodb_check.rc == 1
 
 - name: Install MongoDB tools
-  apt: pkg=mongodb-org-tools
+  apt: pkg=mongo-tools
   when: mongodb_check.rc == 1
 
 # Install PostgreSQL latest version
@@ -54,7 +54,7 @@
   when: psql_check.rc == 1
 
 - name: Add PostgreSQL repo
-  apt_repository: repo="deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+  apt_repository: repo="deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
   when: psql_check.rc == 1
 
 - name: Install PostgreSQL client
