@@ -18,4 +18,8 @@
   alternatives:
     name: x-terminal-emulator
     path: /usr/bin/alacritty
-    # when: alacritty_check is changed
+  when: alacritty_check is changed
+
+- name: Run fc-cache
+  command: "fc-cache -f"
+  when: alacritty_check is changed

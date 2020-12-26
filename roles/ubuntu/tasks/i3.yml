@@ -5,6 +5,7 @@
   apt: pkg={{ items }} state=present
   vars:
     items:
+      - touchegg  # trackpad utils
       - xbacklight  # adjust screen light
       - feh  # change background image
       - arandr  # graphical tool to edit monitors interface
