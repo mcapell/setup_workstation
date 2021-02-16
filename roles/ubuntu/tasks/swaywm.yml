@@ -1,0 +1,29 @@
+- name: Install Sway WM
+  apt: pkg=sway state=present
+
+- name: Utilities for Sway
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - waybar         # i3bar alternative
+      - wdisplays      # arandr alternative
+      - pavucontrol    # tool to manage audio
+      - pipewire       # tools needed for screensharing
+      - brightnessctl  # lcd brightness config
+      - grim           # screenshot
+      - slurp          # screen selector (can be used with grim)
+      - wl-clipboard   # clipboard tools
+      - mako-notifier  # notification system for wayland
+
+- name: Install nmcli-rofi
+  get_url:
+    url="https://raw.githubusercontent.com/sinetoami/nmcli-rofi/master/nmcli-rofi"
+    dest="/home/{{ local_user }}/.local/bin/nmcli-rofi"
+  become: yes
+  become_user: "{{ local_user }}"
+
+- name: Add user to `video` group - needed for `brightnessctl`
+  user:
+    name: "{{ local_user }}"
+    groups: "video"
+    append: yes

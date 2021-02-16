@@ -6,16 +6,16 @@
   failed_when: yarn_check.rc > 1
   changed_when: yarn_check.rc == 1
 
-- name: Add yarn repository
-  apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
-  when: yarn_check is changed
-
 - name: Import yarn repository key
   apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
     state: present
   when: yarn_check is changed
 
+- name: Add yarn repository
+  apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
+  when: yarn_check is changed
+
 - name: Install Yarn
-  apt: pkg=yarn update_cache=yes state=present
+  apt: pkg=yarn state=present
   when: yarn_check is changed

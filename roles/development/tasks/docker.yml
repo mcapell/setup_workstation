@@ -9,26 +9,22 @@
       - curl
       - software-properties-common
 
-- name: Check docker is installed
-  command: dpkg-query -W docker
-  register: docker_check
-  failed_when: docker_check.rc > 1
-  changed_when: docker_check.rc == 1
-
 - name: Add docker's apt key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
-  when: docker_check is changed
 
 - name: Add docker repository
   apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-  when: docker_check is changed
 
 - name: Install docker CE
-  apt: pkg=docker-ce update_cache=yes state=present
-  when: docker_check is changed
+  apt: pkg=docker-ce state=present
 
+- name: Add user to docker group
+  user:
+    name: "{{ local_user }}"
+    groups: "docker"
+    append: yes
 
 # Docker compose
 - name: Check docker-compose is installed
@@ -49,7 +45,6 @@
 
 - name: Download docker-compose binary
   get_url:
-    url="https://github.com/docker/machine/releases/download/{{ bin_docker_machine }}/docker-machine-{{ uname_s.stdout }}-{{ uname_m.stdout }}"
     url="https://github.com/docker/compose/releases/download/{{ bin_docker_compose}}/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}"
     dest="/usr/local/bin/docker-compose"
     mode="0755"

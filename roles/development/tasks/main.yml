@@ -45,10 +45,11 @@
 # - import_tasks: embedded.yml
 # - import_tasks: emacs.yml
 - import_tasks: docker.yml
-# - import_tasks: javascript.yml
+- import_tasks: javascript.yml
 - import_tasks: terraform.yml
 # - import_tasks: android.yml
 # - import_tasks: r.yml
 - import_tasks: java.yml
 - import_tasks: alacritty.yml
 - import_tasks: golang.yml
+- import_tasks: containers.yml
