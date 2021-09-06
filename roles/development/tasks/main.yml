@@ -34,13 +34,13 @@
 - import_tasks: fd.yml
 - import_tasks: flamegraph.yml
 - import_tasks: dotfiles.yml
-- import_tasks: gnome_terminal.yml
+# - import_tasks: gnome_terminal.yml
 - import_tasks: databases.yml
 - import_tasks: python.yml
 - import_tasks: tmux.yml
 - import_tasks: nodejs.yml
 - import_tasks: monitor.yml
-- import_tasks: ruby.yml
+# - import_tasks: ruby.yml
 - import_tasks: web.yml
 # - import_tasks: embedded.yml
 # - import_tasks: emacs.yml
@@ -53,3 +53,5 @@
 - import_tasks: alacritty.yml
 - import_tasks: golang.yml
 - import_tasks: containers.yml
+- import_tasks: fish.yml
+- import_tasks: neovim.yml

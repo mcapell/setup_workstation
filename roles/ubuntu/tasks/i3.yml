@@ -10,13 +10,15 @@
       - feh  # change background image
       - arandr  # graphical tool to edit monitors interface
       - rofi  # alternative to dmenu
-      - i3blocks  # tool to generate the status bar
+      # - i3blocks  # tool to generate the status bar
       - blueman  # tool to manage bluetooth from the status bar
       - pavucontrol  # tool to manage audio
       - lxappearance  # tool to configure GTK themes
       - maim  # tool to take screenshots
       - arc-theme  # Nice theme for GTK and QT
       - xautolock  # autolock after X mins
+      - polybar # i3 bar similar to waybar
+      - i3lock
 
 - name: Check playerctl is already installed
   command: dpkg-query -W playerctl
@@ -33,3 +35,33 @@
 - name: Install playerctl package
   apt: deb="/tmp/playerctl-{{ bin_playerctl }}_amd64.deb"
   when: check_playerctl is changed
+
+- name: Check rofi-bluetooth is already installed
+  stat:
+    path: "/home/{{ local_user }}/.local/bin/rofi-bluetooth"
+  register: rofib_check
+  changed_when: rofib_check.stat.exists == false
+
+- name: Download rofi-bluetooth
+  get_url:
+    url: "https://raw.githubusercontent.com/ClydeDroid/rofi-bluetooth/master/rofi-bluetooth"
+    dest: "/home/{{ local_user }}/.local/bin/rofi-bluetooth"
+    mode: "744"
+  become: yes
+  become_user: "{{ local_user }}"
+  when: rofib_check is changed
+
+- name: Check nmcli-rofi is already installed
+  stat:
+    path: "/home/{{ local_user }}/.local/bin/nmcli-rofi"
+  register: rofinm_check
+  changed_when: rofinm_check.stat.exists == false
+
+- name: Download nmcli-rofi
+  get_url:
+    url: "https://raw.githubusercontent.com/sineto/nmcli-rofi/master/nmcli-rofi"
+    dest: "/home/{{ local_user }}/.local/bin/nmcli-rofi"
+    mode: "744"
+  become: yes
+  become_user: "{{ local_user }}"
+  when: rofinm_check is changed

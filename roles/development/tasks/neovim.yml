@@ -1,0 +1,7 @@
+---
+
+- name: Add neovim repository
+  apt_repository: repo="ppa:neovim-ppa/unstable"
+
+- name: Install neovim
+  apt: pkg=neovim state=present

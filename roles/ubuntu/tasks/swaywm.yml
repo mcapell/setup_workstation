@@ -5,15 +5,19 @@
   apt: pkg={{ items }} state=present
   vars:
     items:
-      - waybar         # i3bar alternative
-      - wdisplays      # arandr alternative
-      - pavucontrol    # tool to manage audio
-      - pipewire       # tools needed for screensharing
-      - brightnessctl  # lcd brightness config
-      - grim           # screenshot
-      - slurp          # screen selector (can be used with grim)
-      - wl-clipboard   # clipboard tools
-      - mako-notifier  # notification system for wayland
+      - waybar                  # i3bar alternative
+      - swayidle                # idle management
+      - swaylock                # lock screen
+      - wdisplays               # arandr alternative
+      - pavucontrol             # tool to manage audio
+      - pipewire                # tools needed for screensharing
+      - brightnessctl           # lcd brightness config
+      - grim                    # screenshot
+      - slurp                   # screen selector (can be used with grim)
+      - wl-clipboard            # clipboard tools
+      - mako-notifier           # notification system for wayland
+      - wofi                    # application launcher
+      # - xdg-desktop-portal-wlr  # xdg-desktop-portal backend for wlroots
 
 - name: Install nmcli-rofi
   get_url:
@@ -27,3 +31,26 @@
     name: "{{ local_user }}"
     groups: "video"
     append: yes
+
+#
+# Replace pulseaudio with Pipewire
+#
+
+# - name: Disable pulseaudio
+#   ansible.builtin.systemd:
+#     name: pulseaudio
+#     state: started
+#     enabled: yes
+#     scope: global
+
+# - name: Copy Pipewire-pulse service and socker
+#   copy:
+#     src: "{{ item }}"
+#     dest: /usr/lib/systemd/user/
+#     owner: root
+#     group: root
+#     mode: 0755
+#   with_items:
+#     - /usr/share/doc/pipewire/examples/systemd/user/pipewire-pulse.service
+#     - /usr/share/doc/pipewire/examples/systemd/user/pipewire-pulse.socket
+#     # sudo systemctl enable --global pipewire-pulse

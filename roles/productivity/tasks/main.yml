@@ -6,7 +6,6 @@
       - firefox
       - filezilla
       - thunderbird
-      - gnome-shell-pomodoro
       - mdp  # markdown presentations
       - ledger  # accouting for hackers
       - lm-sensors  # laptop sensor information (temp, fan rpm..)
@@ -19,6 +18,7 @@
       - taskwarrior
       - telegram-desktop
       - zathura  # document reader
+      - redshift
 
 - import_tasks: spotify.yml
 # - import_tasks: slack.yml

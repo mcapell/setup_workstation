@@ -55,6 +55,15 @@
   become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
+- name: Install pyenv update plugin
+  git:
+    repo: "https://github.com/pyenv/pyenv-update"
+    dest: "/home/{{ local_user }}/.pyenv/plugins/pyenv-update"
+    version: master
+  become: yes
+  become_user: "{{ local_user }}"
+  when: pyenv_check is changed
+
 - name: Install pipx
   pip: executable=/home/{{ local_user }}/.pyenv/shims/pip3 name=pipx
 
