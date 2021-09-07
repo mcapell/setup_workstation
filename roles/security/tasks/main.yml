@@ -1,6 +1,7 @@
 ---
 - name: Install security packages
-  apt: pkg={{ items }} state=present
+  become: yes
+  apt: name={{ items }} state=present
   vars:
     items:
       - clamav

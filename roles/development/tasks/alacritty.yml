@@ -1,25 +1,22 @@
 ---
 
-- name: Check whether Alacritty is already installed
-  command: dpkg-query -W alacritty
-  register: alacritty_check
-  failed_when: alacritty_check.rc > 1
-  changed_when: alacritty_check.rc == 1
-
 - name: Add Alacritty repository from Pop!_OS team
+  become: yes
   apt_repository: repo="ppa:mmstick76/alacritty"
-  when: alacritty_check is changed
 
 - name: Install Alacritty
-  apt: pkg=alacritty state=present
-  when: alacritty_check is changed
+  become: yes
+  apt: name=alacritty state=present
+  register: alacritty_install
 
 - name: Use Alacritty as the default terminal
+  become: yes
   alternatives:
     name: x-terminal-emulator
     path: /usr/bin/alacritty
-  when: alacritty_check is changed
+  when: alacritty_install is changed
 
 - name: Run fc-cache
+  become: yes
   command: "fc-cache -f"
-  when: alacritty_check is changed
+  when: alacritty_install is changed

@@ -16,6 +16,7 @@
   when: toggl_check is changed
 
 - name: Install dependencies
+  become: yes
   apt: deb="/tmp/{{ item }}"
   with_items:
     - "libgstreamer0.10-0_0.10.36-1.5ubuntu1_amd64.deb"
@@ -23,6 +24,7 @@
   when: toggl_check is changed
 
 - name: Install other APT dependencies
+  become: yes
   apt: name={{ items }} state=present
   vars:
     items:
@@ -39,5 +41,6 @@
   when: toggl_check is changed
 
 - name: Install Toggle
+  become: yes
   apt: deb="/tmp/toggldesktop_amd64.deb"
   when: toggl_check is changed

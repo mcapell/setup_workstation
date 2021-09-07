@@ -1,10 +1,9 @@
-- name: Install Sway WM
-  apt: pkg=sway state=present
-
-- name: Utilities for Sway
+- name: Install SwayWM and utilities
+  become: yes
   apt: pkg={{ items }} state=present
   vars:
     items:
+      - sway
       - waybar                  # i3bar alternative
       - swayidle                # idle management
       - swaylock                # lock screen
@@ -22,35 +21,11 @@
 - name: Install nmcli-rofi
   get_url:
     url="https://raw.githubusercontent.com/sinetoami/nmcli-rofi/master/nmcli-rofi"
-    dest="/home/{{ local_user }}/.local/bin/nmcli-rofi"
-  become: yes
-  become_user: "{{ local_user }}"
+    dest="{{ home }}/.local/bin/nmcli-rofi"
 
 - name: Add user to `video` group - needed for `brightnessctl`
+  become: yes
   user:
     name: "{{ local_user }}"
     groups: "video"
     append: yes
-
-#
-# Replace pulseaudio with Pipewire
-#
-
-# - name: Disable pulseaudio
-#   ansible.builtin.systemd:
-#     name: pulseaudio
-#     state: started
-#     enabled: yes
-#     scope: global
-
-# - name: Copy Pipewire-pulse service and socker
-#   copy:
-#     src: "{{ item }}"
-#     dest: /usr/lib/systemd/user/
-#     owner: root
-#     group: root
-#     mode: 0755
-#   with_items:
-#     - /usr/share/doc/pipewire/examples/systemd/user/pipewire-pulse.service
-#     - /usr/share/doc/pipewire/examples/systemd/user/pipewire-pulse.socket
-#     # sudo systemctl enable --global pipewire-pulse

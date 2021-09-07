@@ -1,9 +1,11 @@
 ---
 
 - name: Install fish shell
+  become: yes
   apt: name=fish state=present
 
 - name: Use fish as default shell
+  become: yes
   user:
     name: "{{ local_user }}"
     shell: /usr/bin/fish

@@ -1,43 +1,29 @@
 ---
-- name: Check vim is already installed
-  command: dpkg-query -W vim
-  register: vim_check
-  failed_when: vim_check.rc > 1
-  changed_when: vim_check.rc == 1
 
 - name: Add vim repository
+  become: yes
   apt_repository: repo="ppa:jonathonf/vim"
-  when: vim_check is changed
 
 - name: Install vim
-  apt: pkg=vim update_cache=yes state=present
-  when: vim_check is changed
-
-- name: Install plugin dependencies
-  apt: pkg={{ items }} state=present
-  vars:
-    items:
-      - silversearcher-ag
-      - fonts-powerline
+  become: yes
+  apt: pkg=vim state=present
 
 - name: Check vimrc is configured
   stat:
-    path: "/home/{{ local_user }}/.vim"
+    path: "{{ home }}/.vim"
   register: vimrc_check
   changed_when: vimrc_check.stat.exists == false
 
 - name: Configure vim using git repo
   git:
     repo: "{{ repo_vimrc }}"
-    dest: "/home/{{ local_user }}/.vim/"
+    dest: "{{ home }}/.vim/"
     version: master
-  become: yes
-  become_user: "{{ local_user }}"
   when: vimrc_check is changed
 
 - name: Create symlink to use the configuration
   file:
-    src: "/home/{{ local_user }}/.vim/vimrc"
-    dest: "/home/{{ local_user }}/.vimrc"
+    src: "{{ home }}/.vim/vimrc"
+    dest: "{{ home }}/.vimrc"
     state: link
   when: vimrc_check is changed

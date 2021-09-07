@@ -1,17 +1,12 @@
 ---
 
-- name: Check fd is installed
-  command: dpkg-query -W fd
-  register: fd_check_deb
-  failed_when: fd_check_deb.rc > 1
-  changed_when: fd_check_deb.rc == 1
-
 - name: Download fd
   get_url:
-     url="https://github.com/sharkdp/fd/releases/download/v6.2.0/fd_6.2.0_amd64.deb"
-     dest="/home/{{ local_user }}/Downloads/fd_6.2.0_amd64.deb"
-  when: fd_check_deb.rc == 1
+     url="https://github.com/sharkdp/fd/releases/download/v{{ bin_fd }}/fd_{{ bin_fd }}_amd64.deb"
+     dest="/tmp/fd_{{ bin_fd }}_amd64.deb"
+  when: "'fd' not in ansible_facts.packages"
 
 - name: Install fd
-  apt: deb="/home/{{ local_user }}/Downloads/fd_6.2.0_amd64.deb"
-  when: fd_check_deb.rc == 1
+  become: yes
+  apt: deb="/tmp/fd_{{ bin_fd }}_amd64.deb"
+  when: "'fd' not in ansible_facts.packages"

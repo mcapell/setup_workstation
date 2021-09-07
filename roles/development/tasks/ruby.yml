@@ -1,4 +1,0 @@
----
-
-- name: Update ruby version
-  apt: pkg=ruby-dev state=present

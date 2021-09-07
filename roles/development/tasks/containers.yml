@@ -5,25 +5,26 @@
 # sudo apt-get update
 # sudo apt-get install -y kubectl
 
-- name: Install kubectl dependencies
+- name: Add kubectl's repository apt key
+  become: yes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add kubectl repository
+  become: yes
+  apt_repository:
+    repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+
+- name: Install kubectl & dependencies
+  become: yes
   apt: pkg={{ items }} state=present
   vars:
     items:
       - apt-transport-https
       - gnupg2
       - curl
-
-- name: Add kubectl's repository apt key
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-
-- name: Add kubectl repository
-  apt_repository:
-    repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
-
-- name: Install kubectl
-  apt: name=kubectl state=present
+      - kubectl
 
 - name: Check kind is installed
   command: which kind

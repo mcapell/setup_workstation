@@ -1,19 +1,5 @@
 ---
 
-- name: Check Skype is installed
-  command: dpkg-query -W skypeforlinux
-  register: skype_check
-  failed_when: skype_check.rc > 1
-  changed_when: skype_check.rc == 1
-
-
-- name: Download Skype deb
-  get_url:
-     url="https://go.skype.com/skypeforlinux-64.deb"
-     dest="/home/{{ local_user }}/Downloads/skypeforlinux-64.deb"
-  when: skype_check.rc == 1
-
-
-- name: Install Skype
-  apt: deb="/home/{{ local_user }}/Downloads/skypeforlinux-64.deb"
-  when: skype_check.rc == 1
+- name: Install Skype for Linux
+  become: yes
+  snap: name=skype state=present

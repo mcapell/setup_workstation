@@ -2,10 +2,8 @@
   vars_files:
       - vars/roles
   roles:
-      - { role: design, when: role_design == true }
+      - setup
       - { role: development, when: role_development == true }
-      - { role: games, when: role_games == true }
-      - { role: hardware, when: role_hardware == true }
       - { role: productivity, when: role_productivity == true }
       - { role: security, when: role_security == true }
-      - { role: ubuntu, when: role_ubuntu == true }
+      - { role: desktop, when: role_desktop == true }

@@ -1,9 +1,0 @@
-- name: Check if gimp is installed
-  command: which gimp
-  register: gimp_check
-  failed_when: gimp_check.rc > 1
-  changed_when: gimp_check.rc == 1
-
-- name: Install gimp
-  apt: pkg=gimp state=present
-  when: gimp_check.rc == 1

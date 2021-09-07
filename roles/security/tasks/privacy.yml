@@ -1,33 +1,13 @@
 ---
 
-- name: Check Tor Launcher is already installed
-  command: dpkg-query -W torbrowser-launcher
-  register: tor_check
-  failed_when: tor_check.rc > 1
-  changed_when: tor_check.rc == 1
-
 - name: Add Tor launcher repository
+  become: yes
   apt_repository: repo="ppa:micahflee/ppa"
-  when: tor_check.rc == 1
 
-- name: Install Tor Browser Launcher
-  apt: pkg=torbrowser-launcher update_cache=yes state=present
-  when: tor_check.rc == 1
-
-
-- name: Check Tails Installer is already installed
-  command: dpkg-query -W tails-installer
-  register: tails_check
-  failed_when: tails_check.rc > 1
-  changed_when: tails_check.rc == 1
-
-- name: Add Tails Installer repository
-  apt_repository: repo="ppa:tails-team/tails-installer"
-  when: tails_check.rc == 1
-
-- name: Install Tails Installer
-  apt: pkg=tails-installer update_cache=yes state=present
-  when: tails_check.rc == 1
-
-- name: Install metadata editor
-  apt: pkg=exiv2 state=present
+- name: Install Tor Browser Launcher & others
+  become: yes
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - torbrowser-launcher
+      - exiv2  # metadata editor

@@ -1,19 +1,18 @@
 ---
 
 - name: Install other useful software
-  apt: pkg={{ items }} state=present
+  become: yes
+  apt: name={{ items }} state=present
   vars:
     items:
       - fastjar  # execute jars
       - jarwrapper  # execute jars
-
-- name: Add OpenJDK8 JRE
-  apt: pkg=openjdk-8-jre state=present
-
-- name: Add OpenJDK 11 JDK
-  apt: pkg=openjdk-11-jdk state=present
+      - openjdk-8-jre
+      - openjdk-11-jre
+  register: java_install
 
 - name: Use OpenJDK by default
   alternatives:
     name: java
     path: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+  when: java_install is changed

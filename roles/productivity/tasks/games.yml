@@ -1,0 +1,9 @@
+---
+
+- name: Basic games on every geek machine
+  become: yes
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - nethack-console
+      - gtypist

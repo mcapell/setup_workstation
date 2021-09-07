@@ -6,5 +6,5 @@ if ! [ -x "$(command -v ansible-playbook)" ]; then
   sudo apt install ansible
 fi
 
-# Run ansible playbook
-ansible-playbook ubuntu_setup.yml
+# Run ansible playbook from system's python (removing pyenv from PATH)
+PATH=`echo ${PATH} | awk -v RS=: -v ORS=: '/pyenv/ {next} {print}'` ansible-playbook --ask-become-pass workspace.yml

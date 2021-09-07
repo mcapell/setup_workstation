@@ -1,5 +1,6 @@
 ---
 - name: Install productivity packages
+  become: yes
   apt: pkg={{ items }} state=present
   vars:
     items:
@@ -19,16 +20,25 @@
       - telegram-desktop
       - zathura  # document reader
       - redshift
+      - smartmontools
+      - calibre
+
+- name: Install design packages
+  become: yes
+  apt: pkg={{ items }} state=present
+  vars:
+    items:
+      - imagemagick
+      - pinta  # ~paint for linux
+      - gimp
 
 - import_tasks: spotify.yml
-# - import_tasks: slack.yml
+- import_tasks: games.yml
+- import_tasks: slack.yml
 - import_tasks: skype.yml
 - import_tasks: discord.yml
 - import_tasks: toggl.yml
-- import_tasks: dragondisk.yml
 - import_tasks: vlc_player.yml
 - import_tasks: peek.yml
-- import_tasks: calibre.yml
-# - import_tasks: pdftk.yml
 - import_tasks: latex.yml
 - import_tasks: timewarrior.yml

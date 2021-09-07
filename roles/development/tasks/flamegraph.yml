@@ -5,6 +5,8 @@
   register: flamegraph_check
 
 - name: Download flamegraph repo
+  # Maybe choose a local directory instead?
+  become: yes
   git:
     repo: "https://github.com/brendangregg/FlameGraph.git"
     dest: "/usr/local/lib/FlameGraph/"
@@ -12,6 +14,7 @@
   when: flamegraph_check.stat.exists == false
 
 - name: Symlink flamegraph binaries
+  become: yes
   file:
     src: "/usr/local/lib/FlameGraph/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"

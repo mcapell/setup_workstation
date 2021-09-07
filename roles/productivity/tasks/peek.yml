@@ -1,19 +1,12 @@
 ---
 
-- name: Check peek is already installed
-  command: dpkg-query -W peek
-  register: peek_check
-  failed_when: peek_check.rc > 1
-  changed_when: peek_check.rc == 1
-
-- name: Install compton to enable peek on i3wm
-  apt: pkg=compton state=present
-  when: peek_check is changed
-
 - name: Add Peek repository
+  become: yes
   apt_repository: repo="ppa:peek-developers/stable"
-  when: peek_check is changed
 
-- name: Install peek
-  apt: pkg=peek update_cache=yes state=present
-  when: peek_check is changed
+- name: Install peek & other components
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - peek
+      - compton  # Compositor to enable peek on i3wm

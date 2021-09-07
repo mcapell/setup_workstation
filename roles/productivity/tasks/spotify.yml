@@ -1,11 +1,5 @@
 ---
 
-- name: Check if spotify is already installed
-  command: snap list spotify
-  register: spotify_check
-  failed_when: spotify_check.rc > 1
-  changed_when: spotify_check.rc == 1
-
 - name: Install spotify
-  command: snap install spotify
-  when: spotify_check is changed
+  become: yes
+  snap: name=spotify state=present

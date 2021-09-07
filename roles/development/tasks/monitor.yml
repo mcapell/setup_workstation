@@ -1,7 +1,12 @@
 ---
 
+- name: Add wireshark repo
+  become: yes
+  apt_repository: repo="ppa:wireshark-dev/stable"
+
 - name: Install monitoring tools
-  apt: pkg={{ items }} state=present
+  become: yes
+  apt: name={{ items }} state=present
   vars:
     items:
       - htop
@@ -9,22 +14,7 @@
       - iotop
       - traceroute
       - ipcalc
-
-- name: Check if wireshark is installed
-  command: dpkg-query -W wireshark
-  register: wireshark_check
-  failed_when: wireshark_check.rc > 1
-  changed_when: wireshark_check.rc == 1
-
-- name: Add wireshark repo
-  apt_repository: repo="ppa:wireshark-dev/stable"
-  when: wireshark_check.rc == 1
-
-- name: Install Wireshark
-  apt: pkg=wireshark state=present
-  when: wireshark_check.rc == 1
+      - wireshark
 
 - name: Install glances
-  pip: name=glances executable=/home/{{ local_user }}/.pyenv/shims/pipx
-  become: yes
-  become_user: "{{ local_user }}"
+  pip: name=glances executable={{ home }}/.pyenv/shims/pipx

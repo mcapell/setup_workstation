@@ -1,0 +1,10 @@
+---
+- name: Install Ubuntu-specific packages
+  become: yes
+  apt: name={{ items }} state=present
+  vars:
+    items:
+      - resolvconf
+
+- import_tasks: "{{ wm }}.yml"
+# - import_tasks: keyboard.yml

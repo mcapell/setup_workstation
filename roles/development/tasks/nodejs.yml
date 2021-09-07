@@ -1,6 +1,7 @@
 ---
 
 - name: Install nvm dependencies
+  become: yes
   apt: pkg={{ items }} state=present
   vars:
     items:
@@ -9,17 +10,15 @@
 
 - name: Check if nvm is already installed
   stat:
-    path: "/home/{{ local_user }}/.nvm/"
+    path: "{{ home }}/.nvm/"
   register: nvm_check
 
 - name: Download nvm installation script
   get_url:
      url="https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh"
-     dest="/home/{{ local_user }}/Downloads/nvm_install.sh"
+     dest="/tmp/nvm_install.sh"
   when: nvm_check.stat.exists == false
 
 - name: Install nvm
-  command: "bash /home/{{ local_user }}/Downloads/nvm_install.sh"
-  become: yes
-  become_user: "{{ local_user }}"
+  command: "bash /tmp/nvm_install.sh"
   when: nvm_check.stat.exists == false

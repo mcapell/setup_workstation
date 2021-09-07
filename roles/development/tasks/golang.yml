@@ -1,21 +1,14 @@
 ---
 
-- name: Check golang is already installed
-  command: dpkg-query -W golang-go
-  register: go_check
-  failed_when: go_check.rc > 1
-  changed_when: go_check.rc == 1
-
 - name: Add golang repository
+  become: yes
   apt_repository: repo="ppa:longsleep/golang-backports"
-  when: go_check is changed
 
 - name: Install Golang
-  apt: pkg=golang-go update_cache=yes state=present
-  when: go_check is changed
+  become: yes
+  apt: name=golang-go state=present
+  register: golang_installed
 
 - name: Install gopls and tools
   shell: go get -u golang.org/x/tools/gopls
-  become: yes
-  become_user: "{{ local_user }}"
-  when: go_check is changed
+  when: golang_installed is changed

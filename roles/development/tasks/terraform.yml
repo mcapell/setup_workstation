@@ -13,9 +13,9 @@
   when: check_terraform is changed
 
 - name: Install terraform
+  become: yes
   unarchive:
     src="/tmp/terraform.zip"
     dest=/usr/local/bin
     copy=no
-  become: yes
   when: check_terraform is changed

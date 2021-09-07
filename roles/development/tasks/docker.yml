@@ -1,24 +1,25 @@
 ---
 
-- name: Install docker requirements
-  apt: pkg={{ items }} state=present
+- name: Add docker's apt key
+  become: yes
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker repository
+  become: yes
+  apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+
+- name: Install docker & requirements
+  become: yes
+  apt: name={{ items }} state=present
   vars:
     items:
       - apt-transport-https
       - ca-certificates
       - curl
       - software-properties-common
-
-- name: Add docker's apt key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
-- name: Add docker repository
-  apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-
-- name: Install docker CE
-  apt: pkg=docker-ce state=present
+      - docker-ce
 
 - name: Add user to docker group
   user:
@@ -26,24 +27,28 @@
     groups: "docker"
     append: yes
 
+- name: Get uname -s
+  shell: uname -s
+  register: uname_s
+  changed_when: false
+
+- name: Get uname -m
+  shell: uname -m
+  register: uname_m
+  changed_when: false
+
+
+# --------------
 # Docker compose
+# --------------
 - name: Check docker-compose is installed
   command: which docker-compose
   register: check_dc
   failed_when: check_dc.rc > 1
   changed_when: check_dc.rc == 1
 
-- name: Get uname -s
-  shell: uname -s
-  register: uname_s
-  when: check_dc is changed
-
-- name: Get uname -m
-  shell: uname -m
-  register: uname_m
-  when: check_dc is changed
-
 - name: Download docker-compose binary
+  become: yes
   get_url:
     url="https://github.com/docker/compose/releases/download/{{ bin_docker_compose}}/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}"
     dest="/usr/local/bin/docker-compose"
@@ -51,22 +56,15 @@
   when: check_dc is changed
 
 
+# --------------
 # Docker machine
+# --------------
+
 - name: Check docker-machine is installed
   command: which docker-machine
   register: check_dm
   failed_when: check_dm.rc > 1
   changed_when: check_dm.rc == 1
-
-- name: Get uname -s
-  shell: uname -s
-  register: uname_s
-  when: check_dm is changed
-
-- name: Get uname -m
-  shell: uname -m
-  register: uname_m
-  when: check_dm is changed
 
 - name: Download docker-machine binary
   get_url:
@@ -76,5 +74,4 @@
 
 - name: Install docker-machine
   command: install /tmp/docker-machine /usr/local/bin/docker-machine
-  become: yes
   when: check_dm is changed

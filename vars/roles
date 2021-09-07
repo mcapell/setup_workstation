@@ -1,8 +1,7 @@
+# Window Manager: either i3wm or swaywm
+wm: i3wm
 # Roles configuration
 role_development: yes
 role_security: yes
 role_productivity: yes
-role_games: yes
-role_hardware: yes
-role_design: yes
-role_ubuntu: yes
+role_desktop: yes

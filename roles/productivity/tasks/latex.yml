@@ -1,7 +1,8 @@
 ---
 
 - name: Install latex utils
-  apt: pkg={{ items }} state=present
+  become: yes
+  apt: name={{ items }} state=present
   vars:
     items:
       - texlive-latex-base

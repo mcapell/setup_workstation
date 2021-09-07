@@ -1,0 +1,15 @@
+---
+
+# When using `become: yes`, `ansible_user_id` will be `root`. Cache the
+# .. unpriviled user.
+- name: Get user
+  set_fact:
+    local_user: "{{ ansible_user_id }}"
+
+- name: Get users' home directory
+  set_fact:
+    home: "{{ lookup('env', 'HOME') }}"
+
+- name: Load installed package information into facts
+  package_facts:
+    manager: auto

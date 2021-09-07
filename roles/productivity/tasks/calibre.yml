@@ -1,9 +1,0 @@
-- name: Check if Calibre is already installed
-  command: dpkg-query -W calibre
-  register: calibre_check
-  failed_when: calibre_check.rc > 1
-  changed_when: calibre_check.rc == 1
-
-- name: Install Calibre
-  apt: pkg=calibre state=present
-  when: calibre_check is changed

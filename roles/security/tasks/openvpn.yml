@@ -1,16 +1,17 @@
 ---
 
-- name: Install OpenVPN
-  apt: pkg=openvpn state=present
-
-- name: Install OpenVPN binding for network manager
+- name: Install OpenVPN and other tools
+  become: yes
   apt: pkg={{ items }} state=present
   vars:
     items:
+      - openvpn
       - network-manager-openvpn
       - network-manager-openvpn-gnome
+  register: openvpn_installed
 
 - name: Update openvpn configuration
+  become: yes
   template:
     src: openvpn.j2
     dest: /etc/default/openvpn
@@ -18,10 +19,13 @@
     owner: root
     group: root
     mode: 'u=rw,go=r'
+  when: openvpn_installed is changed
 
 - name: Disable openvpn service
+  become: yes
   systemd:
     name: openvpn
     enabled: no
   notify:
     - openvpn reload-systemd
+  when: openvpn_installed is changed

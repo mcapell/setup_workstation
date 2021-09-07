@@ -1,18 +1,26 @@
 ---
 
 - name: Install python tools
+  become: yes
   apt: name={{ items }} state=present
   vars:
     items:
       - python-pysqlite2
+      - python-dev
+
+
+# ------
+# Pyenv
+# ------
 
 - name: Check pyenv exists
   stat:
-    path: "/home/{{ local_user }}/.pyenv"
+    path: "{{ home }}/.pyenv"
   register: pyenv_check
   changed_when: pyenv_check.stat.exists == false
 
 - name: Install pyenv requirements to build Python versions
+  become: yes
   apt: name={{ items }} state=present
   vars:
     items:
@@ -36,64 +44,37 @@
 - name: Install pyenv as python version manager
   git:
     repo: "https://github.com/pyenv/pyenv.git"
-    dest: "/home/{{ local_user }}/.pyenv"
+    dest: "{{ home }}/.pyenv"
     version: master
-  become: yes
-  become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
 - name: Install python3 versions using pyenv
-  shell: /home/{{ local_user }}/.pyenv/bin/pyenv install {{ item }}
+  shell: "{{ home }}/.pyenv/bin/pyenv install {{ item }}"
   with_items: "{{ bin_python }}"
-  become: yes
-  become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
 - name: Set new installed python versions as global
-  command: /home/{{ local_user }}/.pyenv/bin/pyenv global {{ bin_python | join(" ") }}
-  become: yes
-  become_user: "{{ local_user }}"
+  command: '{{ home }}/.pyenv/bin/pyenv global {{ bin_python | join(" ") }}'
   when: pyenv_check is changed
 
 - name: Install pyenv update plugin
   git:
     repo: "https://github.com/pyenv/pyenv-update"
-    dest: "/home/{{ local_user }}/.pyenv/plugins/pyenv-update"
+    dest: "{{ home }}/.pyenv/plugins/pyenv-update"
     version: master
-  become: yes
-  become_user: "{{ local_user }}"
   when: pyenv_check is changed
 
 - name: Install pipx
-  pip: executable=/home/{{ local_user }}/.pyenv/shims/pip3 name=pipx
+  pip: executable={{ home }}/.pyenv/shims/pip3 name=pipx
 
-- name: Check PYLS is already installed
-  stat:
-    path: "/home/{{ local_user }}/.local/bin/pyls"
-  register: pyls_check
-  changed_when: pyls_check.stat.exists == false
 
-- name: Install PYLS
-  pip: name=python-language-server executable=/home/{{ local_user }}/.pyenv/shims/pipx
-  become: yes
-  become_user: "{{ local_user }}"
-  when: pyls_check is changed
-
-- name: Install PYLS dependencies
-  command: /home/{{ local_user }}/.pyenv/shims/pipx inject python-language-server {{ item }}
-  with_items:
-    - python-language-server[rope]
-    - python-language-server[pyflakes]
-    - python-language-server[mccabe]
-    - python-language-server[pycodestyle]
-    - pyls-mypy
-  become: yes
-  become_user: "{{ local_user }}"
-  when: pyls_check is changed
+# ------
+# Pipenv
+# ------
 
 - name: Check pipenv exists
   stat:
-    path: "/home/{{ local_user }}/.local/share/virtualenvs"
+    path: "{{ home }}/.local/share/virtualenvs"
   register: pipenv_check
   changed_when: pipenv_check.stat.exists == false
 
@@ -104,26 +85,20 @@
   when: pipenv_check is changed
 
 - name: Install pipenv
+  become: yes
   command: python /tmp/get-pipenv.py
   when: pipenv_check is changed
 
-- name: Install Python2.x header file
-  apt: pkg=python-dev state=present
-
-- name: Install tkinter
-  apt: pkg={{ items }} state=present
-  vars:
-    items:
-      - python-tk
+# ------
+# py-spy
+# ------
 
 - name: Check py-spy is installed
   stat:
-    path: /home/{{ local_user }}/.local/bin/py-spy
+    path: "{{ home }}/.local/bin/py-spy"
   register: check_pyspy
   changed_when: check_pyspy.stat.exists == false
 
 - name: Install py-spy
-  pip: name=py-spy executable=/home/{{ local_user }}/.pyenv/shims/pipx
-  become: yes
-  become_user: "{{ local_user }}"
+  pip: name=py-spy executable={{ home }}/.pyenv/shims/pipx
   when: check_pyspy is changed

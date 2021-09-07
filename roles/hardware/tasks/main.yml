@@ -1,4 +1,0 @@
----
-
-- name: Install smartmontools
-  apt: pkg=smartmontools state=present
