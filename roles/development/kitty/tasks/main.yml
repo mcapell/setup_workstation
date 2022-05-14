@@ -1,0 +1,12 @@
+---
+- include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: (main) Setup kitty variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+
+- name: (main) Copy kitty config file
+  copy:
+    src: templates/kitty.conf
+    dest: "{{ home }}/.config/kitty/kitty.conf"

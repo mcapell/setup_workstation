@@ -1,9 +1,10 @@
 ---
 
-- name: Add neovim repository
+- name: (debian) Add neovim repository
   become: yes
   apt_repository: repo="ppa:neovim-ppa/unstable"
 
-- name: Install neovim
+- name: (debian) Install neovim
   become: yes
   apt: name=neovim state=present
+

@@ -1,0 +1,14 @@
+---
+
+- name: (main) Install development packages
+  package: name={{ items }} state=present
+  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+  vars:
+    items:
+      - git
+      - plantuml
+      - tree
+      - wget
+      - jq
+      - curl
+      - fswatch

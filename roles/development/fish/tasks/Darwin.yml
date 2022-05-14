@@ -1,0 +1,4 @@
+---
+
+- name: (darwin) Install fish shell
+  homebrew: name=fish state=present

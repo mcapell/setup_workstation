@@ -1,0 +1,15 @@
+---
+
+- name: (main) Install tmux & tools
+  package: name={{ items }} state=present
+  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+  vars:
+    items:
+      - tmux
+      - tmuxinator
+
+- name: (main) Copy tmux config file
+  copy:
+    src: templates/tmux.conf
+    dest: "{{ home }}/.tmux.conf"
+    backup: yes

@@ -1,7 +1,2 @@
 # Window Manager: either i3wm or swaywm
 wm: i3wm
-# Roles configuration
-role_development: yes
-role_security: yes
-role_productivity: yes
-role_desktop: yes

@@ -1,0 +1,8 @@
+---
+
+- include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: (main) Copy neovim config file
+  copy:
+    src: templates/config/
+    dest: "{{ home }}/.config/nvim2/"
