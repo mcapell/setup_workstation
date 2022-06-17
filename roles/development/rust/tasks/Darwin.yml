@@ -1,0 +1,8 @@
+---
+
+- name: (darwin) Install rust tools
+  package: name={{ items }} state=present
+  vars:
+    items:
+      - rustup
+      - rust-analyzer

@@ -148,13 +148,31 @@ require('formatter').setup({
                 }
             end
         },
+        typescriptreact = {
+            function()
+                return {
+                    exe = "prettier",
+                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                    stdin = true,
+                }
+            end
+        },
+        typescript = {
+            function()
+                return {
+                    exe = "prettier",
+                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                    stdin = true,
+                }
+            end
+        },
     }
 })
 
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.tf,*.tfvars FormatWrite
+  autocmd BufWritePost *.tf,*.tfvars,*.ts,*.tsx FormatWrite
 augroup END
 ]], true)
 

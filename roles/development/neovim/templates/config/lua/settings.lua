@@ -1,12 +1,16 @@
 -- Colorscheme
 vim.o.termguicolors = true
 vim.cmd'colorscheme apprentice'
+vim.o.background = 'dark'
 
 -- Let scroll using the mouse
 vim.o.mouse = 'nicr'
 
 -- Allow to change buffer without saving it
 vim.o.hidden = true
+
+-- Set search case insensitive
+vim.o.ignorecase = true
 
 -- Unset backup  file
 vim.o.swapfile = false

@@ -12,7 +12,8 @@ vim.api.nvim_set_keymap('n', '<right>', '<nop>', {})
 
 -- Mappings for plugins
 ---- 
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>p', ':NvimTreeToggle<CR>', {})
 
 ---- Telescope
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {})

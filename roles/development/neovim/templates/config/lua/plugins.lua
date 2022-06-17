@@ -9,7 +9,8 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Theme
-  use 'romainl/Apprentice'
+  use 'romainl/Apprentice'          -- dark theme
+  use 'NLKNguyen/papercolor-theme'  -- light theme
 
   -- Productivity
   use 'myusuf3/numbers.vim'
@@ -44,7 +45,6 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'rafamadriz/friendly-snippets'
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-
 
   -- Go
   use 'golang/vscode-go'

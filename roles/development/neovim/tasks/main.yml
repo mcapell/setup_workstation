@@ -5,4 +5,4 @@
 - name: (main) Copy neovim config file
   copy:
     src: templates/config/
-    dest: "{{ home }}/.config/nvim2/"
+    dest: "{{ home }}/.config/nvim/"

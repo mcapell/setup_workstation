@@ -12,3 +12,8 @@
       - jq
       - curl
       - fswatch
+
+- name: (main) Copy .gitconfig
+  copy:
+    src: templates/gitconfig
+    dest: "{{ home }}/.gitconfig"
