@@ -11,9 +11,16 @@ vim.api.nvim_set_keymap('n', '<left>', '<nop>', {})
 vim.api.nvim_set_keymap('n', '<right>', '<nop>', {})
 
 -- Mappings for plugins
----- 
+---- NvimTree
 vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>p', ':NvimTreeToggle<CR>', {})
+
+-- Harpoon
+vim.api.nvim_set_keymap('n', '<C-j>', ":lua require'harpoon.ui'.nav_next() <CR>", {})
+vim.api.nvim_set_keymap('n', '<C-k>', ":lua require'harpoon.ui'.nav_prev() <CR>", {})
+vim.api.nvim_set_keymap('n', '<leader>hh', ":Telescope harpoon marks<CR>", {})
+require'telescope'.load_extension('harpoon')
+vim.api.nvim_set_keymap('n', '<leader>ha', ":lua require'harpoon.mark'.add_file()<CR>", {})
 
 ---- Telescope
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {})
