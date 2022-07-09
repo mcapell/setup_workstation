@@ -5,7 +5,7 @@
       - setup
       - { role: development/common, tags: 'development' }
       - { role: development/fish, tags: 'development' }
-      # - { role: development/alacritty, tags: 'development' }
+      - { role: development/alacritty, tags: 'development' }
       - { role: development/kitty, tags: 'development' }
       - { role: development/neovim, tags: 'development' }
       - { role: development/tmux, tags: 'development' }

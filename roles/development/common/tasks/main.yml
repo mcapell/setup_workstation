@@ -12,6 +12,7 @@
       - jq
       - curl
       - fswatch
+      - difftastic # macOS-only??
 
 - name: (main) Copy .gitconfig
   copy:
