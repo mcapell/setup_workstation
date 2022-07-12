@@ -1,5 +1,5 @@
 env:
-  TERM: xterm-256color
+  TERM: alacritty-direct
 
 window:
   startup_mode: Maximized
@@ -19,7 +19,13 @@ font:
   size: 20
 
 shell:
-  program: {{ fish_path }}
+  program: {{ tmux_path }}
+  args:
+    - new-session
+    - -A
+    - -D
+    - -s
+    - default
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }

@@ -6,10 +6,14 @@
   vars:
     items:
       - tmux
-      - tmuxinator
+      - tmuxinator # will this work on linux?
+
+- name: (main) Setup tmux variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
 
 - name: (main) Copy tmux config file
-  copy:
-    src: templates/tmux.conf
+  template:
+    src: tmux.conf.j2
     dest: "{{ home }}/.tmux.conf"
-    backup: yes

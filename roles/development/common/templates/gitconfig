@@ -15,6 +15,7 @@
     cb    = "checkout -b"
     graph = "log --graph --oneline --decorate --all"
     lc    = "log --pretty=format:'%Cred%h%Creset %<(20)%C(bold blue)%an%Creset %Cgreen%ci%Creset %C(yellow)%d%Creset %s'"
+    sc    = "switch -c"
 
 [init]
     defaultBranch = main

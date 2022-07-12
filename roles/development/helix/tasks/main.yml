@@ -6,4 +6,3 @@
     dest: "{{ home }}/.config/helix/config.toml"
 
 - include_tasks: "{{ ansible_os_family }}.yml"
-
