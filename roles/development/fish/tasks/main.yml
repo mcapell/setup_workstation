@@ -1,4 +1,8 @@
 ---
 
-- include_tasks: "{{ ansible_os_family }}.yml"
+- name: (main) Copy fish config file
+  template:
+    src: config.fish.j2
+    dest: "{{ home }}/.config/helix/config.fish"
 
+- include_tasks: "{{ ansible_os_family }}.yml"

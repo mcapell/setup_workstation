@@ -8,8 +8,10 @@
       - { role: development/alacritty, tags: 'development' }
       - { role: development/kitty, tags: 'development' }
       - { role: development/neovim, tags: 'development' }
-      - { role: development/tmux, tags: 'development' }
+      - { role: development/helix, tags: 'development' }
       - { role: development/rust, tags: 'development' }
+      - { role: development/tmux, tags: 'development' }
+      - { role: development/terraform, tags: 'development' }
       # - { role: productivity, when: role_productivity == true }
       # - { role: security, when: role_security == true }
       # - { role: desktop, when: role_desktop == true }

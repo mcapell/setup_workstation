@@ -1,5 +1,10 @@
 ---
 
+- name: (main) Copy .gitconfig
+  copy:
+    src: templates/gitconfig
+    dest: "{{ home }}/.gitconfig"
+
 - name: (main) Install development packages
   package: name={{ items }} state=present
   become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
@@ -13,8 +18,12 @@
       - curl
       - fswatch
       - difftastic # macOS-only??
+      - flamegraph # macOS-only??
 
-- name: (main) Copy .gitconfig
-  copy:
-    src: templates/gitconfig
-    dest: "{{ home }}/.gitconfig"
+- name: (main) Install database clients
+  package: name={{ items }} state=present
+  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+  vars:
+    items:
+      - mycli
+      - pgcli

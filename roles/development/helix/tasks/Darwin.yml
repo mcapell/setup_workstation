@@ -1,0 +1,4 @@
+---
+
+- name: (darwin) Install helix editor
+  homebrew: name=helix state=present
