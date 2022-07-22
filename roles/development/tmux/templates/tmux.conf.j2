@@ -1,13 +1,36 @@
-setw -g mouse on
-set -sg escape-time 10
-set -g focus-events on
+# Tmux configuration
 set -g default-terminal "tmux-256color"
 set -as terminal-overrides ",xterm-256color:RGB,alacritty:RGB"
+
+# Enable mouse
+setw -g mouse on
+
+# Mouse wheel
+# bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+
+# Reduce ESC timeout from 500ms to 10ms
+set -sg escape-time 10
+
+# NOTE This might consume a lot of RAM if multiple panes are
+# .. open at the same time
 set -g history-limit 10000
+
+# Used for vim-tmux integrations
+set -g focus-events on
 
 # Vi mode
 setw -g mode-keys vi
 bind-key -T copy-mode-vi 'v' send -X begin-selection
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
+# Center window names
+set-option -g status-justify centre
+
+# Start windows at 1
+set -g base-index 1
+
+# Colorscheme
+source-file ~/.tmux_colorscheme.conf
+
+# TMUX chooses the shell
 set -g default-shell {{ fish_path }}

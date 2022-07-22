@@ -1,5 +1,22 @@
 ---
 
+- name: (main) Setup tmux variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+
+- name: (main) Install TPM (tmux plugin manager) 
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ home }}/.tmux/plugins/tpm"
+    clone: yes
+    update: no
+
+- name: (main) Copy tmux config file
+  template:
+    src: tmux.conf.j2
+    dest: "{{ home }}/.tmux.conf"
+
 - name: (main) Install tmux & tools
   package: name={{ items }} state=present
   become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
@@ -7,13 +24,3 @@
     items:
       - tmux
       - tmuxinator # will this work on linux?
-
-- name: (main) Setup tmux variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_os_family }}.yml"
-
-- name: (main) Copy tmux config file
-  template:
-    src: tmux.conf.j2
-    dest: "{{ home }}/.tmux.conf"

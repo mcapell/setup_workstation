@@ -16,6 +16,9 @@ set -g __fish_git_prompt_color_cleanstate green --bold
 set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_branch cyan --dim --italics
 
+# Set standard language and localization
+export LC_ALL=C.UTF-8
+
 export EDITOR="nvim"
 export GOBIN="$HOME/.local/bin"
 export GOPRIVATE=github.com/docker
@@ -32,8 +35,14 @@ alias t="task"
 alias vim="nvim"
 alias gs="git status -s"
 alias gss="git status | grep -v vendor/"
-alias ll="ls -l"
+alias ll="ls -al"
+alias grep='grep --color=auto'
+alias ping='ping -c 5'
+alias rm='rm -i'
 alias killcolumn="cut -w -f1 | xargs kill"
+
+# Mimic pbcopy from OSX
+# alias pbcopy='xclip -selection clipboard'
 
 # Other infra aliases
 alias eks='infra-cli aws configEks'

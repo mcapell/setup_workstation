@@ -10,6 +10,8 @@ return require('packer').startup(function()
 
   -- Theme
   use 'romainl/Apprentice'          -- dark theme
+  use 'Mofiqul/dracula.nvim'        -- dark theme
+  use 'eaxly/autumn.nvim'           -- dark theme
   use 'NLKNguyen/papercolor-theme'  -- light theme
 
   -- Productivity

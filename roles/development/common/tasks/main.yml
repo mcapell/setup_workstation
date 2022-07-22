@@ -17,8 +17,7 @@
       - jq
       - curl
       - fswatch
-      - difftastic # macOS-only??
-      - flamegraph # macOS-only??
+      # - flamegraph # macOS-only??
 
 - name: (main) Install database clients
   package: name={{ items }} state=present
@@ -27,3 +26,9 @@
     items:
       - mycli
       - pgcli
+
+- name: (main) From GitHub
+  git_release:
+    repo: Wilfred/difftastic
+    install_path: "{{ home }}/.local/bin/"
+    binary: difft

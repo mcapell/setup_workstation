@@ -1,9 +1,5 @@
 ---
 
-- name: Add Alacritty repository from Pop!_OS team
-  become: yes
-  apt_repository: repo="ppa:mmstick76/alacritty"
-
 - name: Install Alacritty
   become: yes
   apt: name=alacritty state=present

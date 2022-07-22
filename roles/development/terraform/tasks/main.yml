@@ -2,10 +2,10 @@
 
 - include_tasks: "{{ ansible_os_family }}.yml"
 
-- name: (main) Install terraform tools
-  package: name={{ items }} state=present
-  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
-  vars:
-    items:
-      - terraform
-      - terraform-lsp
+# - name: (main) Install terraform tools
+#   package: name={{ items }} state=present
+#   become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+#   vars:
+#     items:
+#       - terraform
+#       - terraform-lsp
