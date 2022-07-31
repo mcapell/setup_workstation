@@ -21,6 +21,17 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+require'gitsigns'.setup {
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  current_line_blame = true,
+}
+
 local lspkind = require('lspkind')
 local cmp = require'cmp'
 local source_mapping = {
@@ -95,7 +106,7 @@ end
 
 -- vim.o.updatetime = 250
 -- vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
-require('lsp_lines').register_lsp_virtual_lines()
+require'lsp_lines'.setup{}
 vim.diagnostic.config({
   virtual_text = false,
 })
@@ -112,7 +123,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Telescope
-require('telescope').setup({
+require'telescope'.setup({
     defaults = {
         file_ignore_patterns = {".git/"},
     },

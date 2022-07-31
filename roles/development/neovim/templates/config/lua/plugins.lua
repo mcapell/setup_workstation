@@ -35,6 +35,7 @@ return require('packer').startup(function()
 
   -- General
   use 'tpope/vim-fugitive'
+  use 'lewis6991/gitsigns.nvim'
   use 'knsh14/vim-github-link'
   use 'editorconfig/editorconfig-vim'
   use 'vim-test/vim-test'

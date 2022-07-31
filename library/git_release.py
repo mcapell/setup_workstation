@@ -57,13 +57,15 @@ def main():
     install_path = mod.params["install_path"]
     binary = mod.params["binary"]
 
-
     path = Path(os.path.join(install_path, binary))
     if path.is_file():
         mod.exit_json(changed=False, meta={"message": "already installed"})
         return
 
     urls = github_release_downloader(repo)
+    if len(urls) == 0:
+        mod.exit_json(changed=False, meta={"message": "no releases found for arch/os"})
+        return
     install_binary(binary, install_path, urls[0])
     mod.exit_json(changed=True, meta={"files": urls})
 

@@ -1,6 +1,6 @@
 -- Colorscheme
 vim.o.termguicolors = true
-vim.cmd'colorscheme apprentice'
+vim.cmd'colorscheme PaperColor'
 vim.o.background = 'dark'
 
 -- Let scroll using the mouse
