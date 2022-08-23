@@ -1,4 +1,3 @@
-require('plugins')
-require('settings')
-require('mappings')
-require('lsp')
+require("plugins")
+require("settings")
+require("mappings")

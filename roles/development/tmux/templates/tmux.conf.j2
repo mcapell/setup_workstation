@@ -34,3 +34,10 @@ source-file ~/.tmux_colorscheme.conf
 
 # TMUX chooses the shell
 set -g default-shell {{ fish_path }}
+
+# Reload source
+unbind r
+bind-key r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
+
+# Plumber
+bind-key -T copy-mode "x" send-keys -X copy-pipe-and-cancel "/Users/marc/.cargo/bin/plumber"

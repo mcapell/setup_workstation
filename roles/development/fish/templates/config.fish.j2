@@ -39,7 +39,9 @@ alias ll="ls -al"
 alias grep='grep --color=auto'
 alias ping='ping -c 5'
 alias rm='rm -i'
-alias killcolumn="cut -w -f1 | xargs kill"
+
+# Tools
+alias languagetool='docker run -d -p 8081:8010 --name languagetool --restart=unless-stopped erikvl87/languagetool'
 
 # Mimic pbcopy from OSX
 # alias pbcopy='xclip -selection clipboard'

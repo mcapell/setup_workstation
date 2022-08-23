@@ -1,10 +1,11 @@
 -- Colorscheme
 vim.o.termguicolors = true
-vim.cmd'colorscheme PaperColor'
-vim.o.background = 'dark'
+-- vim.cmd'colorscheme base16-apprentice'
+vim.cmd("colorscheme nightfox")
+vim.o.background = "dark"
 
 -- Let scroll using the mouse
-vim.o.mouse = 'nicr'
+vim.o.mouse = "nicr"
 
 -- Allow to change buffer without saving it
 vim.o.hidden = true
@@ -19,9 +20,9 @@ vim.o.swapfile = false
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.cmd [[
+vim.cmd([[
     autocmd Filetype go setlocal noexpandtab
-]]
+]])
 
 vim.o.showmatch = true
 vim.o.wrap = false
@@ -33,8 +34,13 @@ vim.o.scrolljump = 5
 vim.o.scrolloff = 10
 
 -- Show end-of-line whitespaces
-vim.cmd [[
-  set list
-  set listchars=tab:\|\ ,trail:·
-  autocmd FileType go,gomod set listchars=tab:\ \ ,trail:·
-]]
+vim.cmd([[
+    set list
+    set listchars=tab:\|\ ,trail:·
+    autocmd FileType go,gomod,lua set listchars=tab:\ \ ,trail:·
+]])
+
+-- Set custom filetypes
+vim.cmd([[
+    autocmd BufNewFile,BufRead *.Jenkinsfile set filetype=groovy
+]])
