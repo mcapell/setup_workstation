@@ -1,0 +1,8 @@
+---
+
+# See: https://sw.kovidgoyal.net/kitty/binary/#binary-install
+# - name: (darwin) Install Kitty
+#   homebrew_cask: name=kitty state=present
+
+- name: (darwin) Install fira-code nerd font
+  homebrew_cask: name=font-fira-code-nerd-font state=present

@@ -1,0 +1,17 @@
+---
+
+- name: (debian) Add neovim apt signing key
+  become: yes
+  apt_key:
+    id: 55F96FCF8231B6DD
+    keyserver: keyserver.ubuntu.com
+    keyring: /usr/share/keyrings/neovim.gpg
+
+- name: (debian) Add neovim repository
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/neovim.gpg] http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu jammy main
+
+- name: (debian) Install neovim
+  become: yes
+  apt: name=neovim state=present

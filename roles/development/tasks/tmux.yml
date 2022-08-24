@@ -1,9 +1,0 @@
----
-
-- name: Install tmux & tools
-  become: yes
-  apt: name={{ items }} state=present
-  vars:
-    items:
-      - tmux
-      - tmuxinator

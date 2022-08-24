@@ -1,0 +1,13 @@
+---
+
+- name: (main) Setup alacritty variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+
+- name: (main) Copy alacritty config file
+  template:
+    src: alacritty.yml.j2
+    dest: "{{ home }}/.alacritty.yml"
+
+- include_tasks: "{{ ansible_os_family }}.yml"

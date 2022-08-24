@@ -1,5 +1,0 @@
----
-
-- name: Install Skype for Linux
-  become: yes
-  snap: name=skype state=present

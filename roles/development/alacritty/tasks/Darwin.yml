@@ -1,0 +1,4 @@
+---
+
+- name: (darwin) Install Alacritty
+  homebrew_cask: name=alacritty state=present

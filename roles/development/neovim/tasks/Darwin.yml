@@ -1,0 +1,4 @@
+---
+
+- name: (darwin) Install neovim
+  package: name=neovim state=present

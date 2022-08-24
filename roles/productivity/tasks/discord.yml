@@ -1,5 +1,0 @@
----
-
-- name: Install Discord
-  become: yes
-  snap: name=discord state=present

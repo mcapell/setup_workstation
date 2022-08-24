@@ -1,0 +1,35 @@
+# Enforce SSH
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[commit]
+    gpgSign = true
+
+[tag]
+    gpgSign = true
+
+[alias]
+    mb    = "!MB() { git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'; }; MB"
+    ff    = "!HU() { git remote | grep upstream > /dev/null && true || false; }; FF() { MB=$(git mb); git fetch upstream && git checkout $MB && git reset --hard upstream/$MB && git push -f origin $MB; }; HU && FF || echo \"No upstream origin or missing remote HEAD.\nUse \"git remote set-head origin --auto\" if upstream origin is set.\"; "
+    rs    = "!f() { MB=$(git mb); git switch $MB && git pull origin $MB; }; f"
+    cb    = "checkout -b"
+    graph = "log --graph --oneline --decorate --all"
+    lc    = "log --pretty=format:'%Cred%h%Creset %<(25)%C(bold blue)%an%Creset %Cgreen%ci%Creset %C(yellow)%d%Creset %s'"
+    sc    = "switch -c"
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+	external = difft
+
+# Use .gitconfig.local to store machine-specific information (ie: user, signing key, etc.)
+[include]
+    path = ~/.gitconfig.local

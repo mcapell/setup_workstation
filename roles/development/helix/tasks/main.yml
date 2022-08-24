@@ -1,0 +1,8 @@
+---
+
+- name: (main) Copy helix config file
+  template:
+    src: config.toml.j2
+    dest: "{{ home }}/.config/helix/config.toml"
+
+- include_tasks: "{{ ansible_os_family }}.yml"

@@ -1,0 +1,10 @@
+---
+
+- name: (debian) Check if rust is already installed
+  stat:
+    path: "{{ home }}/.cargo"
+  register: rust_check
+
+- name: (debian) Install rust using rustup
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  when: rust_check.stat.exists == false

@@ -1,0 +1,34 @@
+---
+
+- name: (main) Copy .gitconfig
+  copy:
+    src: templates/gitconfig
+    dest: "{{ home }}/.gitconfig"
+
+- name: (main) Install development packages
+  package: name={{ items }} state=present
+  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+  vars:
+    items:
+      - git
+      - plantuml
+      - tree
+      - wget
+      - jq
+      - curl
+      - fswatch
+      # - flamegraph # macOS-only??
+
+- name: (main) Install database clients
+  package: name={{ items }} state=present
+  become: "{{ true if ansible_pkg_mgr != 'homebrew' else false }}"
+  vars:
+    items:
+      - mycli
+      - pgcli
+
+- name: (main) From GitHub
+  git_release:
+    repo: Wilfred/difftastic
+    install_path: "{{ home }}/.local/bin/"
+    binary: difft

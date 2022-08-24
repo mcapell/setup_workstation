@@ -1,1 +1,3 @@
 ubuntu_setup.retry
+
+.mypy_cache

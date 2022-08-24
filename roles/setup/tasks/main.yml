@@ -13,3 +13,4 @@
 - name: Load installed package information into facts
   package_facts:
     manager: auto
+  when: ansible_os_family != "Darwin"
