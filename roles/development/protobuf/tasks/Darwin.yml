@@ -1,0 +1,13 @@
+---
+# - name: (darwin) Install protobuf tools
+#   package: name={{ items }} state=present
+#   vars:
+#     items:
+#       - bufbuild/buf/buf
+#
+#
+- name: (darwin) Install protobuf tools
+  git_release:
+    repo: bufbuild/buf
+    install_path: "{{ home }}/.local/bin/"
+    binary: buf

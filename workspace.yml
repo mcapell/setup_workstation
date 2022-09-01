@@ -1,17 +1,18 @@
 - hosts: localhost
   vars_files:
-      - vars/roles
+    - vars/roles
   roles:
-      - setup
-      - { role: development/common, tags: 'development' }
-      - { role: development/fish, tags: 'development' }
-      - { role: development/alacritty, tags: 'development' }
-      # - { role: development/kitty, tags: 'development' }
-      - { role: development/neovim, tags: 'development' }
-      - { role: development/helix, tags: 'development' }
-      - { role: development/rust, tags: 'development' }
-      - { role: development/tmux, tags: 'development' }
-      - { role: development/terraform, tags: 'development' }
-      # - { role: productivity, when: role_productivity == true }
-      # - { role: security, when: role_security == true }
-      # - { role: desktop, when: role_desktop == true }
+    - setup
+    - { role: development/common, tags: "development" }
+    - { role: development/fish, tags: "development" }
+    - { role: development/alacritty, tags: "development" }
+    # - { role: development/kitty, tags: 'development' }
+    - { role: development/neovim, tags: "development" }
+    - { role: development/helix, tags: "development" }
+    - { role: development/rust, tags: "development" }
+    - { role: development/tmux, tags: "development" }
+    - { role: development/terraform, tags: "development" }
+    - { role: development/protobuf, tags: "development" }
+    # - { role: productivity, when: role_productivity == true }
+    # - { role: security, when: role_security == true }
+    # - { role: desktop, when: role_desktop == true }

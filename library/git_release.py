@@ -1,8 +1,9 @@
 #!/usr/bin/python
 import platform
+import os
+import shutil
 import tarfile
 import tempfile
-import os.path
 from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
@@ -20,7 +21,8 @@ def github_release_downloader(repo: str) -> list[str]:
     for asset in r.json()["assets"]:
         url = asset["browser_download_url"]
         # Check OS and architecture
-        if os in asset["name"] and arch in asset["name"]:
+        name = asset["name"].lower()
+        if os in name and arch in name:
             downloads.append(url)
     return downloads
 
@@ -41,9 +43,21 @@ def download_file(url: str) -> Generator[str, None, None]:
 
 def install_binary(binary: str, path: str, url: str):
     with download_file(url) as f:
-        tar = tarfile.open(f)
-        tar.extract(binary, path=path)
-        tar.close()
+        if url.endswith("tar.gz"):
+            extract_tar(f, binary, path)
+        else:
+            copy_binary(f, binary, path)
+
+
+def extract_tar(file: str, binary: str, path: str):
+    tar = tarfile.open(file)
+    tar.extract(binary, path=path)
+    tar.close()
+
+
+def copy_binary(file: str, binary: str, path: str):
+    shutil.copyfile(file, os.path.join(path, binary))
+    os.chmod(os.path.join(path, binary), 0o755)
 
 
 def main():

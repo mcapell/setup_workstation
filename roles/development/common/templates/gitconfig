@@ -16,6 +16,7 @@
     graph = "log --graph --oneline --decorate --all"
     lc    = "log --pretty=format:'%Cred%h%Creset %<(25)%C(bold blue)%an%Creset %Cgreen%ci%Creset %C(yellow)%d%Creset %s'"
     sc    = "switch -c"
+    odiff = "diff --no-ext-diff"
 
 [init]
     defaultBranch = main
@@ -28,7 +29,7 @@
 
 [diff]
     colorMoved = default
-	external = difft
+    external = difft
 
 # Use .gitconfig.local to store machine-specific information (ie: user, signing key, etc.)
 [include]

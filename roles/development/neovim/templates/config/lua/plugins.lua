@@ -32,9 +32,7 @@ return require("packer").startup(function()
 	use({
 		"ThePrimeagen/harpoon",
 		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("config.harpoon")
-		end,
+		config = require("config.harpoon"),
 	})
 
 	-- General
@@ -48,33 +46,28 @@ return require("packer").startup(function()
 	-- LSP and autocomplete
 	use({
 		"neovim/nvim-lspconfig",
-		requires = {
-			"onsails/lspkind-nvim",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/vim-vsnip",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"rafamadriz/friendly-snippets",
-			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		},
-		config = function()
-			require("config.lsp")
-		end,
+		config = require("config.lsp"),
 	})
+	use("onsails/lspkind-nvim")
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
+	use("rafamadriz/friendly-snippets")
+	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("config.null-ls")
-		end,
+		config = require("config.null-ls"),
 	})
 
 	-- Debug
 	use({
 		"rcarriga/nvim-dap-ui",
 		requires = "mfussenegger/nvim-dap",
+		config = require("config.debug"),
 	})
 
 	-- Go

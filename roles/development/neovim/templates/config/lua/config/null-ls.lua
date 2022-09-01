@@ -1,16 +1,17 @@
-local ok, _ = pcall(require, "null-ls")
+local ok, null_ls = pcall(require, "null-ls")
 if not ok then
 	return
 end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-require("null-ls").setup({
+null_ls.setup({
 	sources = {
-		require("null-ls").builtins.formatting.stylua,
-		require("null-ls").builtins.formatting.terraform_fmt,
-		require("null-ls").builtins.formatting.gofmt,
-		require("null-ls").builtins.formatting.rustfmt,
-		require("null-ls").builtins.formatting.prettier,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.terraform_fmt,
+		-- null_ls.builtins.formatting.gofmt,
+		-- null_ls.builtins.formatting.buf, -- profobuf, does not work (see: https://github.com/bufbuild/buf/issues/1035)
+		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.prettier,
 	},
 	on_attach = function(client, bufnr)
 		-- Format on save
