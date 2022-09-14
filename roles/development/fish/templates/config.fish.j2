@@ -43,6 +43,7 @@ alias rm='rm -i'
 
 # Tools
 alias languagetool='docker run -d -p 8081:8010 --name languagetool --restart=unless-stopped erikvl87/languagetool'
+alias myprs='gh api graphql -f query=\'query { viewer { pullRequests(first: 100, states: OPEN, orderBy: {field: UPDATED_AT, direction: DESC}) { nodes { number, title, url } } } }\' --template \'{{range .data.viewer.pullRequests.nodes}}{{"#" | color "yellow" }}{{ .number | color "yellow" }}{{ "\t" }}{{ .url | color "cyan" }}{{ " ("}}{{ .title }}{{")"}}{{"\n"}}{{end}}\''
 
 # Mimic pbcopy from OSX
 # alias pbcopy='xclip -selection clipboard'

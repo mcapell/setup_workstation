@@ -1,8 +1,7 @@
 ---
-
 - name: (main) Copy fish config file
-  template:
-    src: config.fish.j2
+  copy:
+    src: templates/config.fish.j2
     dest: "{{ home }}/.config/fish/config.fish"
 
 - include_tasks: "{{ ansible_os_family }}.yml"
