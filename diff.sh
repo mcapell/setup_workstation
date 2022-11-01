@@ -4,7 +4,8 @@
 diff -I 'program:' roles/development/alacritty/templates/alacritty.yml.j2 ~/.alacritty.yml
 
 # fish
-diff roles/development/fish/templates/config.fish.j2 ~/.config/fish/config.fish
+diff roles/development/fish/templates/config.fish ~/.config/fish/config.fish
+find roles/development/fish/templates/functions -type f | sed 's/roles\/development\/fish\/templates\/functions\///' | xargs -n1 -I{} sh -c "diff roles/development/fish/templates/functions/{} ~/.config/fish/functions/{}"
 
 # git
 diff roles/development/common/templates/gitconfig ~/.gitconfig
