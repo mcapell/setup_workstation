@@ -103,7 +103,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Server and it's configurations can be found here:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
