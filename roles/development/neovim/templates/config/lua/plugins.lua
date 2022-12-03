@@ -23,7 +23,6 @@ return require("packer").startup(function()
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = "kyazdani42/nvim-web-devicons",
-		commit = "e3353c4cb40baef335e1a21d8b9c21b9cde919be",
 	})
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -40,6 +39,7 @@ return require("packer").startup(function()
 	use("lewis6991/gitsigns.nvim")
 	use("knsh14/vim-github-link")
 	use("editorconfig/editorconfig-vim")
+	use("jiangmiao/auto-pairs")
 	use("vim-test/vim-test")
 	-- use 'mhartington/formatter.nvim'
 

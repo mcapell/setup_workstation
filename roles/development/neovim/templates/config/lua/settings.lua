@@ -43,4 +43,5 @@ vim.cmd([[
 -- Set custom filetypes
 vim.cmd([[
     autocmd BufNewFile,BufRead *.Jenkinsfile set filetype=groovy
+    autocmd BufNewFile,BufRead *.oapi set filetype=yaml
 ]])

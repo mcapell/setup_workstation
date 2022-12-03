@@ -24,7 +24,6 @@ vim.api.nvim_set_keymap("n", "gi", ":Telescope lsp_implementations<CR>", {})
 vim.api.nvim_set_keymap("n", "gD", ":Telescope lsp_type_definitions<CR>", {})
 vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", {})
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", {})
-vim.api.nvim_set_keymap("n", "ca", ":Telescope lsp_code_actions<CR>", {})
 
 ---- Vim-test
 vim.api.nvim_set_keymap("n", "<leader>tt", ":TestNearest<CR>", {})
