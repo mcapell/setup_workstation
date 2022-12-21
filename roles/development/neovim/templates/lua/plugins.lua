@@ -1,9 +1,10 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap =
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+local is_boostrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	is_boostrap = true
+	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	vim.cmd([[packadd packer.nvim]])
 end
 
 return require("packer").startup(function()
@@ -13,7 +14,6 @@ return require("packer").startup(function()
 	use("EdenEast/nightfox.nvim")
 
 	-- Productivity
-	use("myusuf3/numbers.vim")
 	use("tpope/vim-surround")
 	use("vim-scripts/BufOnly.vim")
 	use({
@@ -31,7 +31,6 @@ return require("packer").startup(function()
 	use({
 		"ThePrimeagen/harpoon",
 		requires = "nvim-lua/plenary.nvim",
-		config = require("config.harpoon"),
 	})
 
 	-- General
@@ -41,33 +40,40 @@ return require("packer").startup(function()
 	use("editorconfig/editorconfig-vim")
 	use("jiangmiao/auto-pairs")
 	use("vim-test/vim-test")
-	-- use 'mhartington/formatter.nvim'
 
 	-- LSP and autocomplete
 	use({
-		"neovim/nvim-lspconfig",
-		config = require("config.lsp"),
+		"VonHeikemen/lsp-zero.nvim",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+			{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+		},
 	})
-	use("onsails/lspkind-nvim")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
-	use("hrsh7th/cmp-nvim-lsp-signature-help")
-	use("rafamadriz/friendly-snippets")
-	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		config = require("config.null-ls"),
 	})
 
 	-- Debug
 	use({
 		"rcarriga/nvim-dap-ui",
 		requires = "mfussenegger/nvim-dap",
-		config = require("config.debug"),
 	})
 
 	-- Go
@@ -79,7 +85,7 @@ return require("packer").startup(function()
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
-	if packer_bootstrap then
+	if is_bootstrap then
 		require("packer").sync()
 	end
 end)

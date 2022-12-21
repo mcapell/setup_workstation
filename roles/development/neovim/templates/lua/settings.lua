@@ -4,6 +4,14 @@ vim.o.termguicolors = true
 vim.cmd("colorscheme nightfox")
 vim.o.background = "dark"
 
+-- Numbers
+vim.o.number = true
+vim.o.relativenumber = true
+
+-- Search
+vim.o.hlsearch = false
+vim.o.incsearch = true
+
 -- Let scroll using the mouse
 vim.o.mouse = "nicr"
 
