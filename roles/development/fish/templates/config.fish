@@ -34,6 +34,7 @@ alias dw="docker workflow"
 
 # Random aliases
 alias vim="nvim"
+alias emacs="nvim"
 alias gs="git status -s"
 alias gss="git status | grep -v vendor/"
 alias ll="ls -al"
