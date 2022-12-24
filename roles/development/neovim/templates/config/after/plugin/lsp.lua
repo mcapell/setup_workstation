@@ -10,14 +10,6 @@ lsp.ensure_installed({
 	"golangci_lint_ls",
 })
 
-local cmp = require("cmp")
-lsp.defaults.cmp_mappings({
-	["<C-e>"] = cmp.mapping({
-		i = cmp.mapping.abort(),
-		c = cmp.mapping.close(),
-	}),
-})
-
 local cmp_sources = lsp.defaults.cmp_sources()
 table.insert(cmp_sources, { name = "nvim_lsp_signature_help", keyword_length = 3 })
 lsp.setup_nvim_cmp({
@@ -64,7 +56,7 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.terraform_fmt,
-		-- null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.goimports,
 		-- null_ls.builtins.formatting.buf, -- profobuf, does not work (see: https://github.com/bufbuild/buf/issues/1035)
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.prettier,

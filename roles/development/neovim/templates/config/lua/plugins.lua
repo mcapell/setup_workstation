@@ -73,15 +73,25 @@ return require("packer").startup(function()
 	-- Debug
 	use({
 		"rcarriga/nvim-dap-ui",
-		requires = "mfussenegger/nvim-dap",
+		requires = {
+			{ "mfussenegger/nvim-dap" },
+
+			-- Languages
+			{ "leoluz/nvim-dap-go" },
+		},
 	})
 
 	-- Go
-	use({
-		"fatih/vim-go",
+	-- use("fatih/vim-go", {
+	-- 	run = ":GoUpdateBinaries",
+	-- })
+	use("ray-x/go.nvim", {
+		requires = {
+			{ "neovim/nvim-lspconfig" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
 		run = ":GoUpdateBinaries",
 	})
-	use("leoluz/nvim-dap-go")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

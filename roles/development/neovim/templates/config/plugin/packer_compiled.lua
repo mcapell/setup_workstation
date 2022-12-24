@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/marc/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["go.nvim"] = {
+    loaded = true,
+    path = "/Users/marc/.local/share/nvim/site/pack/packer/start/go.nvim",
+    url = "https://github.com/ray-x/go.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/Users/marc/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -168,11 +173,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/marc/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
-  },
-  ["numbers.vim"] = {
-    loaded = true,
-    path = "/Users/marc/.local/share/nvim/site/pack/packer/start/numbers.vim",
-    url = "https://github.com/myusuf3/numbers.vim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -238,11 +238,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/marc/.local/share/nvim/site/pack/packer/start/vim-github-link",
     url = "https://github.com/knsh14/vim-github-link"
-  },
-  ["vim-go"] = {
-    loaded = true,
-    path = "/Users/marc/.local/share/nvim/site/pack/packer/start/vim-go",
-    url = "https://github.com/fatih/vim-go"
   },
   ["vim-surround"] = {
     loaded = true,
